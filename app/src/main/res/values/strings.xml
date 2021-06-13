@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AutoMessage</string>
+    <string name="accessibility_service_label">AutoMessage AccessibilityService</string>
+    <string name="date_programming">Fecha</string>
+    <string name="hour_programming">Hora</string>
+    <string name="save">Guardar</string>
+</resources>
