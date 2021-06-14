@@ -4,17 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:padding="8dp"
+    android:orientation="vertical"
+    style="@style/Theme.AppCompat.Light.NoActionBar"
     tools:context=".view.activity.MainActivity">
 
     <Button
-        android:id="@+id/buttonHome"
+        android:id="@+id/buttonNuevoEnvio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/nuevo_envio"
+        android:layout_gravity="right" />
 
+    <TextView
+        android:text="Envíos pendientes"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/size_24sp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content" />
 </LinearLayout>

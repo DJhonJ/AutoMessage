@@ -4,4 +4,5 @@
     <string name="date_programming">Fecha</string>
     <string name="hour_programming">Hora</string>
     <string name="save">Guardar</string>
+    <string name="nuevo_envio">Programar</string>
 </resources>

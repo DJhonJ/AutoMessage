@@ -32,10 +32,11 @@ class DateDialogFragment(val listener: (date: String) -> Unit) : DialogFragment(
         val year = calendar.get(Calendar.YEAR)
 
         //pasamos this, porque heredamos de ondatesetlistener
-        val picker = DatePickerDialog(activity as Context, this, year, month, day)
-        picker.datePicker.minDate = calendar.timeInMillis
-        calendar.add(Calendar.MONTH, +2)
-        picker.datePicker.maxDate = calendar.timeInMillis
+        val picker = DatePickerDialog(activity as Context, this, year, month, day).apply {
+            datePicker.minDate = calendar.timeInMillis
+            calendar.add(Calendar.MONTH, +2)
+            datePicker.maxDate = calendar.timeInMillis
+        }
 
         return picker
     }

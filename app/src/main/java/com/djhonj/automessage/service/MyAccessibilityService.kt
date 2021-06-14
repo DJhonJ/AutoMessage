@@ -54,19 +54,19 @@ class MyAccessibilityService: AccessibilityService() {
             Log.i("configurateHomeButton", "constraintLayout vacio")
         }
 
-        val button: Button = constraintLayout.findViewById(R.id.buttonHome)
+        //val button: Button = constraintLayout.findViewById(R.id.buttonHome)
 
-        if (button == null) {
-            Log.i("configurateHomeButton", "button vacio")
-        }
-
-        button.let {
-            it.setOnClickListener {
-                performGlobalAction(GLOBAL_ACTION_HOME)
-
-                Toast.makeText(applicationContext, "click button", Toast.LENGTH_LONG).show()
-            }
-        }
+//        if (button == null) {
+//            Log.i("configurateHomeButton", "button vacio")
+//        }
+//
+//        button.let {
+//            it.setOnClickListener {
+//                performGlobalAction(GLOBAL_ACTION_HOME)
+//
+//                Toast.makeText(applicationContext, "click button", Toast.LENGTH_LONG).show()
+//            }
+//        }
 
         Toast.makeText(applicationContext, "configurationHome", Toast.LENGTH_LONG).show()
     }

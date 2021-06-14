@@ -9,13 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoMessage">
-        <activity android:name="com.djhonj.automessage.view.activity.ProgrammingActivity">
+        <activity android:name="com.djhonj.automessage.view.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.djhonj.automessage.view.activity.MainActivity"></activity>
+
+        <activity android:name="com.djhonj.automessage.view.activity.ProgrammingActivity" />
 
         <service
             android:name="com.djhonj.automessage.service.MyAccessibilityService"
@@ -29,6 +30,8 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_service_config" />
         </service>
-    </application>
 
+        <receiver android:name=".receiver.AlertReceiver" />
+
+    </application>
 </manifest>
