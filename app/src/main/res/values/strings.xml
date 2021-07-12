@@ -5,4 +5,5 @@
     <string name="hour_programming">Hora</string>
     <string name="save">Guardar</string>
     <string name="nuevo_envio">Programar</string>
+    <string name="envios_pendientes">Envíos pendientes</string>
 </resources>

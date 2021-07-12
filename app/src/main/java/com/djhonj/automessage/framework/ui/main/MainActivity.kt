@@ -1,11 +1,10 @@
-package com.djhonj.automessage.view.activity
+package com.djhonj.automessage.framework.ui.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import com.djhonj.automessage.R
 import com.djhonj.automessage.databinding.ActivityMainBinding
+import com.djhonj.automessage.framework.ui.programming.ProgrammingActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

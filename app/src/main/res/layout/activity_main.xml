@@ -7,19 +7,22 @@
     android:padding="8dp"
     android:orientation="vertical"
     style="@style/Theme.AppCompat.Light.NoActionBar"
-    tools:context=".view.activity.MainActivity">
+    tools:context=".framework.ui.main.MainActivity">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonNuevoEnvio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nuevo_envio"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        app:icon="@drawable/ic_time"
         android:layout_gravity="right" />
 
     <TextView
-        android:text="Envíos pendientes"
+        android:text="@string/envios_pendientes"
         android:layout_width="wrap_content"
         android:textSize="@dimen/size_24sp"
+
         android:layout_gravity="center"
         android:layout_height="wrap_content" />
 </LinearLayout>

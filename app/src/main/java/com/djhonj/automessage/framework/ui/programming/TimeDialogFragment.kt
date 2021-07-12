@@ -1,4 +1,4 @@
-package com.djhonj.automessage.view.fragment
+package com.djhonj.automessage.framework.ui.programming
 
 import android.app.Dialog
 import android.app.TimePickerDialog
@@ -6,7 +6,9 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
+import com.djhonj.automessage.framework.ui.common.Constants
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class TimeDialogFragment(val listener: (String) -> Unit) : DialogFragment(), TimePickerDialog.OnTimeSetListener {
@@ -15,7 +17,8 @@ class TimeDialogFragment(val listener: (String) -> Unit) : DialogFragment(), Tim
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
         calendar.set(Calendar.MINUTE, minute)
 
-        listener(DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.time))
+        listener(SimpleDateFormat(Constants.TIME_FORMAT).format(calendar.time))
+        //listener(DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.time))
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -23,9 +26,6 @@ class TimeDialogFragment(val listener: (String) -> Unit) : DialogFragment(), Tim
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val minute = calendar.get(Calendar.MINUTE)
 
-        val picker = TimePickerDialog(activity as Context, this, hour, minute, true)
-        return picker
-
-        return picker
+        return TimePickerDialog(activity as Context, this, hour, minute, true)
     }
 }

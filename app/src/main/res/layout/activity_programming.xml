@@ -4,55 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dp_16"
     android:orientation="vertical"
-    tools:context=".view.activity.ProgrammingActivity">
+    android:padding="@dimen/dp_16"
+    tools:context=".framework.ui.programming.ProgrammingActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/date_programming" />
+
         <TextView
-            android:text="@string/hour_programming"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
+            android:layout_weight="1"
+            android:text="@string/hour_programming" />
     </LinearLayout>
 
-    <LinearLayout android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_width="match_parent">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/editTextDate"
-            android:focusable="false"
-            android:clickable="false"
-            android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <EditText android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/etDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="false"
-            android:focusable="false"
-            android:id="@+id/etHour"
-            android:layout_height="wrap_content" />
+            android:focusable="false" />
+
+        <EditText
+            android:id="@+id/etTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:focusable="false" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_weight="1"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
     <Button
-        android:layout_gravity="right"
-        android:text="@string/save"
         android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="@string/save" />
 
 </LinearLayout>

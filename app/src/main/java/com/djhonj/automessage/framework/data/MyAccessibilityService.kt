@@ -1,11 +1,10 @@
-package com.djhonj.automessage.service
+package com.djhonj.automessage.framework.data
 
 import android.accessibilityservice.AccessibilityService
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.accessibility.AccessibilityEvent
-import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.Toast
 import com.djhonj.automessage.R
@@ -50,9 +49,9 @@ class MyAccessibilityService: AccessibilityService() {
     }
 
     private fun configurateHomeButton() {
-        if (constraintLayout == null) {
-            Log.i("configurateHomeButton", "constraintLayout vacio")
-        }
+        //if (constraintLayout == null) {
+           // Log.i("configurateHomeButton", "constraintLayout vacio")
+        //}
 
         //val button: Button = constraintLayout.findViewById(R.id.buttonHome)
 
