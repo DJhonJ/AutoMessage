@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -44,7 +45,15 @@ dependencies {
 
     //koin dependency injection
     def koin_version = "2.1.5"
-    implementation "org.koin:koin-android:$koin_version"  // Koin for Android
+    implementation "org.koin:koin-android:2.2.2"  // Koin for Android
+    //implementation "io.insert-koin:koin-core:3.0.1"  // Koin for Android
+    //implementation 'io.insert-koin:koin-androidx-compose:3.1.2'
+
+    //corrutinas
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"
+
+    //cardview
+    implementation "androidx.cardview:cardview:1.0.0"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

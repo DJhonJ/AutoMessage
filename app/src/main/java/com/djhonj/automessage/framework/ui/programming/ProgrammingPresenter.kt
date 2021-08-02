@@ -15,7 +15,7 @@ import java.time.format.FormatStyle
 import java.util.*
 
 class ProgrammingPresenter(
-    private val view: IShowMessage,
+    private val view: IProgrammingView,
     private val programarEnvio: ProgramarEnvio
     ) {
     //private val interactorProgrammin: IProgrammingInteractor = ProgrammingInteractor(this)
@@ -25,6 +25,11 @@ class ProgrammingPresenter(
     @RequiresApi(Build.VERSION_CODES.O)
     fun save(date: String, time: String) {
         val dateTime = SimpleDateFormat("${Constants.DATE_FORMAT} ${Constants.TIME_FORMAT}").parse("$date $time")
-        programarEnvio.invoke(dateTime.time)
+        val response: Boolean = programarEnvio.invoke(dateTime.time)
+
+        if (response) {
+            view.show("proceso guardado")
+            view.initActivity()
+        }
     }
 }

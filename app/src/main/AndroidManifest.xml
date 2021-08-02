@@ -2,25 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.djhonj.automessage">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
+        android:name=".framework.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:name=".framework.App"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoMessage">
-        <activity android:name="com.djhonj.automessage.framework.ui.main.MainActivity">
+        <activity android:name=".framework.ui.contact.ContactActivity" />
+        <activity android:name=".framework.ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.djhonj.automessage.framework.ui.programming.ProgrammingActivity" />
+        <activity android:name=".framework.ui.programming.ProgrammingActivity" />
 
         <service
-            android:name="com.djhonj.automessage.framework.data.MyAccessibilityService"
+            android:name=".framework.data.MyAccessibilityService"
             android:label="@string/accessibility_service_label"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
@@ -31,8 +35,9 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_service_config" />
         </service>
+        <service android:name=".framework.data.MyService" />
 
-        <receiver android:name="com.djhonj.automessage.framework.data.AlertReceiver" />
-
+        <receiver android:name=".framework.data.AlertReceiver" />
     </application>
+
 </manifest>

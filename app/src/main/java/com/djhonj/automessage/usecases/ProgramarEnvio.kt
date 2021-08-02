@@ -1,13 +1,15 @@
 package com.djhonj.automessage.usecases
 
-import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import com.djhonj.automessage.framework.data.AlertReceiver
+import com.djhonj.automessage.framework.data.MyService
+import com.djhonj.automessage.framework.data.NotificationApp
 
 class ProgramarEnvio(
     private val context: Context,
@@ -26,6 +28,10 @@ class ProgramarEnvio(
         }
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, dateTimeMillisecond, pendingIntent)
+
+        //NotificationApp(context).sendForeground()
+
+        ContextCompat.startForegroundService(context, Intent(context, MyService::class.java))
 
         return true
     }
