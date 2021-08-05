@@ -2,6 +2,10 @@ package com.djhonj.automessage.framework.data
 
 import android.accessibilityservice.AccessibilityGestureEvent
 import android.accessibilityservice.AccessibilityService
+import android.accessibilityservice.AccessibilityServiceInfo
+import android.app.Activity
+import android.app.ActivityManager
+import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Build
@@ -34,6 +38,10 @@ class MyAccessibilityService: AccessibilityService() {
             }
             AccessibilityEvent.TYPE_VIEW_FOCUSED -> {
                 message("focus")
+                //performClick()
+
+                val activity: ActivityManager = this.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+
             }
         }
 
@@ -62,6 +70,18 @@ class MyAccessibilityService: AccessibilityService() {
         message("serviceConnected con applicationContext")
         message("serviceConnected con this")
 
+        var info = AccessibilityServiceInfo()
+        info.apply {
+            notificationTimeout = 100
+            //canRetrieveWindowContent = true
+
+        }
+
+
+
+        this.serviceInfo
+
+
         /*constraintLayout = FrameLayout(this)
 
         val inflater: LayoutInflater = LayoutInflater.from(this)
@@ -72,6 +92,30 @@ class MyAccessibilityService: AccessibilityService() {
     override fun onUnbind(intent: Intent?): Boolean {
         //return super.onUnbind(intent)
         return false
+    }
+
+    private fun performClick() {
+        //informacion de la vista (activity, pantalla) con el focus actual
+        val nodeInfo: AccessibilityNodeInfo = this.rootInActiveWindow
+        val targetNode: AccessibilityNodeInfo? = findNodeInfoById(nodeInfo, "com.whatsapp:id/send")
+
+        targetNode?.also {
+            if (it.isClickable && it.isVisibleToUser) {
+                targetNode.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+            }
+        }
+    }
+
+    private fun findNodeInfoById(nodeInfo: AccessibilityNodeInfo, resId: String): AccessibilityNodeInfo? {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            val list: List<AccessibilityNodeInfo> = nodeInfo.findAccessibilityNodeInfosByViewId(resId)
+            //nodeInfo.in
+            if(list != null && list.isNotEmpty()) {
+                return list?.get(0)
+            }
+        }
+
+        return null
     }
 
     private fun message(message: String) {

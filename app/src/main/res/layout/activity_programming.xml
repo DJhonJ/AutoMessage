@@ -11,6 +11,17 @@
     tools:context=".framework.ui.programming.ProgrammingActivity">
 
     <Button
+        android:id="@+id/buttonEnabledAccesibility"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="enabled accesibility"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
         android:id="@+id/buttonAddContact"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"

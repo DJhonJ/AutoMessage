@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.djhonj.automessage.R
+import com.djhonj.automessage.domain.Contact
 import com.djhonj.automessage.framework.ui.programming.ProgrammingActivity
 import org.koin.android.ext.android.inject
 
@@ -24,10 +25,6 @@ class ContactActivity : AppCompatActivity(), IContactView {
     override fun onClickItem(number: String) {
         numberSelected = number
 
-        onBackPressed()
-    }
-
-    override fun onBackPressed() {
         setResult(RESULT_OK, Intent().apply {
             putExtra("number", numberSelected)
         })

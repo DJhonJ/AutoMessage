@@ -8,9 +8,11 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.provider.Settings
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.djhonj.automessage.databinding.ActivityProgrammingBinding
+import com.djhonj.automessage.domain.InformationSend
 import com.djhonj.automessage.framework.ui.common.Constants
 import com.djhonj.automessage.framework.ui.common.IShowMessage
 import com.djhonj.automessage.framework.ui.contact.ContactActivity
@@ -37,8 +39,6 @@ class ProgrammingActivity: AppCompatActivity(), IProgrammingView {
         binding.etDate.setText(SimpleDateFormat(Constants.DATE_FORMAT).format(Date()))
         binding.etTime.setText(SimpleDateFormat(Constants.TIME_FORMAT).format(Date()))
         //binding.etTime.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(Date()))
-
-        //numberPhone = intent.extras?.getString("number").toString()
 
         //mostrar datepicker dialog
         binding.etDate.setOnClickListener {
@@ -67,11 +67,16 @@ class ProgrammingActivity: AppCompatActivity(), IProgrammingView {
 
         binding.buttonSave.setOnClickListener {
             //envio datos de fecha y hora
-            presenter.save(binding.etDate.text.toString(), binding.etTime.text.toString())
+            presenter.save(binding.etDate.text.toString(), binding.etTime.text.toString(), numberPhone, binding.etMensaje.text.toString())
         }
 
         binding.buttonAddContact.setOnClickListener {
             startActivityForResult(Intent(this, ContactActivity::class.java), 0)
+        }
+
+        binding.buttonEnabledAccesibility.setOnClickListener {
+            //habilitar accesibilidad
+            startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
         }
     }
 

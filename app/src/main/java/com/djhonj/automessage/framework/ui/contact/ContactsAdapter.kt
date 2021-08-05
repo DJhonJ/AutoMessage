@@ -12,8 +12,7 @@ import com.djhonj.automessage.R
 import com.djhonj.automessage.domain.Contact
 import com.djhonj.automessage.framework.ui.programming.ProgrammingActivity
 
-class ContactsAdapter (private val contacts: List<Contact>,
-    private val activity: IContactView
+class ContactsAdapter (private val contacts: List<Contact>, private val activity: IContactView
 ): RecyclerView.Adapter<ContactsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)

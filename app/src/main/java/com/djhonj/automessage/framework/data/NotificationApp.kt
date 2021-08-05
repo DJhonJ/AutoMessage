@@ -38,7 +38,8 @@ class NotificationApp(private val context: Context) {
     }
 
     fun createNotification(title: String, description: String, priority: Int = NotificationCompat.PRIORITY_DEFAULT): Notification {
-        val pendingIntent: PendingIntent = Intent(context, MainActivity::class.java).let {
+        //context, MainActivity::class.java -> iban en constructor intent
+        val pendingIntent: PendingIntent = Intent().let {
             PendingIntent.getActivity(context, 0, it, 0)
         }
 
