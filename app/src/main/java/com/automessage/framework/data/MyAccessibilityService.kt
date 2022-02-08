@@ -36,12 +36,11 @@ class MyAccessibilityService: AccessibilityService() {
             AccessibilityEvent.TYPE_VIEW_CLICKED -> {
                 message("clicked")
             }
+
             AccessibilityEvent.TYPE_VIEW_FOCUSED -> {
                 message("focus")
-                //performClick()
-
-                val activity: ActivityManager = this.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-
+                performClick()
+                //val activity: ActivityManager = this.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
             }
         }
 
@@ -72,15 +71,11 @@ class MyAccessibilityService: AccessibilityService() {
 
         var info = AccessibilityServiceInfo()
         info.apply {
-            notificationTimeout = 100
+            //notificationTimeout = 100
             //canRetrieveWindowContent = true
-
         }
 
-
-
-        this.serviceInfo
-
+        //this.serviceInfo
 
         /*constraintLayout = FrameLayout(this)
 

@@ -33,7 +33,8 @@ class ProgramarEnvio(
         }
 
         //flag: cancela el anterior y crea uno nuevo
-        val pendingIntent: PendingIntent = PendingIntent.getBroadcast(context, Random.nextInt(0, 1000), intent, PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent: PendingIntent = PendingIntent.getBroadcast(context, Random.nextInt(0, 1000),
+            intent, PendingIntent.FLAG_IMMUTABLE)
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, dateTimeMillisecond, pendingIntent)
 
         //NotificationApp(context).sendForeground()
