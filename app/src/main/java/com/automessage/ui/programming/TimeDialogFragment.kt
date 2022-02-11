@@ -1,4 +1,4 @@
-package com.automessage.framework.ui.programming
+package com.automessage.ui.programming
 
 import android.app.Dialog
 import android.app.TimePickerDialog
@@ -6,8 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
-import com.automessage.framework.ui.common.Constants
-import java.text.DateFormat
+import com.automessage.ui.common.Constants
 import java.text.SimpleDateFormat
 import java.util.*
 

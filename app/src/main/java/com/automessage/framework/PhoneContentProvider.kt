@@ -1,9 +1,7 @@
-package com.automessage.framework.data
+package com.automessage.framework
 
 import android.content.Context
-import android.database.Cursor
 import android.provider.ContactsContract
-import android.provider.Settings
 import com.automessage.data.datasource.ILocalContacts
 import com.automessage.domain.Contact
 import kotlinx.coroutines.*

@@ -1,16 +1,12 @@
-package com.automessage.framework.ui.contact
+package com.automessage.ui.contact
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.automessage.R
 import com.automessage.domain.Contact
-import com.automessage.framework.ui.programming.ProgrammingActivity
 
 class ContactsAdapter (private val contacts: List<Contact>, private val activity: IContactView
 ): RecyclerView.Adapter<ContactsAdapter.ViewHolder>() {

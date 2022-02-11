@@ -1,4 +1,4 @@
-package com.automessage.framework.ui.contact
+package com.automessage.ui.contact
 
 interface IContactView {
     fun onClickItem(number: String)

@@ -1,26 +1,17 @@
-package com.automessage.framework.data
+package com.automessage.framework
 
 import android.accessibilityservice.AccessibilityGestureEvent
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo
-import android.app.Activity
-import android.app.ActivityManager
-import android.content.Context
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Build
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.automessage.R
-import com.automessage.framework.ui.main.MainActivity
-import java.lang.Exception
 
-class MyAccessibilityService: AccessibilityService() {
+class ServiceAccessibility: AccessibilityService() {
     lateinit var constraintLayout: FrameLayout
 
     //interumpe los comentarios que podamos hacer en la aplicacion
@@ -30,7 +21,7 @@ class MyAccessibilityService: AccessibilityService() {
 
     //se llama cuando el usuario hace algun evento (como clickar) sobre el dispositivo
     //en ese momento podemos hacer comentarios
-    @RequiresApi(Build.VERSION_CODES.P)
+    //@RequiresApi(Build.VERSION_CODES.P)
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         when(event?.eventType) {
             AccessibilityEvent.TYPE_VIEW_CLICKED -> {
@@ -66,8 +57,8 @@ class MyAccessibilityService: AccessibilityService() {
     //Usa este método para completar cualquier paso de configuración único para tu servicio
     override fun onServiceConnected() {
         //super.onServiceConnected()
-        message("serviceConnected con applicationContext")
-        message("serviceConnected con this")
+        message("serviceConnected")
+        //message("serviceConnected con this")
 
         var info = AccessibilityServiceInfo()
         info.apply {
@@ -85,6 +76,7 @@ class MyAccessibilityService: AccessibilityService() {
 
     //Se llama a este método cuando el sistema está a punto de cerrar el servicio de accesibilidad
     override fun onUnbind(intent: Intent?): Boolean {
+        message("servicio de accessibilidad cerrado.")
         //return super.onUnbind(intent)
         return false
     }

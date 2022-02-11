@@ -5,30 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingHorizontal="@dimen/dp_16"
-    android:paddingTop="@dimen/dp_8"
-    android:paddingBottom="@dimen/dp_16"
-    tools:context=".framework.ui.programming.ProgrammingActivity">
+    android:padding="@dimen/dp_16"
+    tools:context=".ui.programming.ProgrammingActivity">
 
     <Button
-        android:id="@+id/buttonEnabledAccesibility"
+        android:id="@+id/btnAddContact"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="enabled accesibility"
+        android:text="@string/add_contact"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <Button
-        android:id="@+id/buttonAddContact"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="add contacto"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -36,21 +22,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/date_programming"
+        android:layout_marginTop="@dimen/dp_8"
+        android:text="@string/date_dispatch"
         app:layout_constraintBottom_toTopOf="@id/etDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonAddContact" />
+        app:layout_constraintTop_toBottomOf="@id/btnAddContact" />
 
     <TextView
         android:id="@+id/tvHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/hour_programming"
+        android:text="@string/hour_dispatch"
+        android:layout_marginTop="@dimen/dp_8"
         app:layout_constraintBottom_toTopOf="@id/tvHour"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tvDate"
-        app:layout_constraintTop_toBottomOf="@id/buttonAddContact" />
+        app:layout_constraintTop_toBottomOf="@id/btnAddContact" />
 
     <EditText
         android:id="@+id/etDate"
@@ -75,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvHour" />
 
     <TextView
-        android:id="@+id/tvMensaje"
+        android:id="@+id/tvMessage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_16"
@@ -84,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@id/etTime" />
 
     <EditText
-        android:id="@+id/etMensaje"
+        android:id="@+id/etMessage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="left|top"
@@ -93,20 +81,10 @@
         android:lines="23"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvMensaje" />
+        app:layout_constraintTop_toBottomOf="@id/tvMessage" />
 
     <Button
-        android:id="@+id/buttonGoWhatsapp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="go whatsapp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonSave"
+        android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"

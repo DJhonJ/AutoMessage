@@ -1,4 +1,4 @@
-package com.automessage.framework.ui.common
+package com.automessage.ui.common
 
 class Constants {
     companion object {

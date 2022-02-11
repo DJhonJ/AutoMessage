@@ -2,27 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Theme.AppCompat.Light.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     android:orientation="vertical"
-    style="@style/Theme.AppCompat.Light.NoActionBar"
-    tools:context=".framework.ui.main.MainActivity">
+    android:padding="@dimen/dp_16"
+    tools:context=".ui.main.MainActivity">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonNuevoEnvio"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nuevo_envio"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        app:icon="@drawable/ic_time"
-        android:layout_gravity="right" />
+        android:layout_gravity="right"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:text="@string/new_dispatch"
+        app:icon="@drawable/ic_time" />
 
     <TextView
-        android:text="@string/envios_pendientes"
         android:layout_width="wrap_content"
-        android:textSize="@dimen/size_24sp"
-
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_height="wrap_content" />
+        android:text="@string/pending_dispatch"
+        android:textSize="@dimen/size_24sp" />
 </LinearLayout>

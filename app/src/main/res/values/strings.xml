@@ -1,9 +1,23 @@
 <resources>
     <string name="app_name">WhatsAlarm</string>
-    <string name="accessibility_service_label">AutoMessage AccessibilityService</string>
-    <string name="date_programming">Fecha</string>
-    <string name="hour_programming">Hora</string>
+
+    <string name="accessibility_name">WhatsAlarm Accessibility Service</string>
+    <string name="accessibility_description">Necesarios para el envío de mensajes.</string>
+    <string name="accessibility_enable_message">Para que la aplicación funcione de manera correcta debe habilitar el servicio de accesibilidad [WhatsAlarm Accessibility Service].</string>
+
+    <string name="date_dispatch">Fecha de envío</string>
+    <string name="hour_dispatch">Hora de envío</string>
     <string name="save">Guardar</string>
-    <string name="nuevo_envio">Programar</string>
-    <string name="envios_pendientes">Envíos pendientes</string>
+    <string name="new_dispatch">Nuevo envío</string>
+    <string name="pending_dispatch">Envíos pendientes</string>
+    <string name="add_contact">Agregar contacto</string>
+    <string name="accessibility_enable">Habilitar accesibilidad</string>
+    <string name="date_selected">Seleccionar fecha</string>
+    <string name="hour_selected">Seleccionar hora</string>
+    <string name="information">Información</string>
+
+    <string name="phone_send_empty">Debe por lo menos agregar un contacto</string>
+    <string name="message_send_empty">Escribir el mensaje a enviar</string>
+    <string name="date_send_empty">Debe seleccionar la fecha de envío</string>
+    <string name="time_send_empty">Debe seleccionar la hora de envío</string>
 </resources>

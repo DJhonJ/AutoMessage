@@ -1,4 +1,4 @@
-package com.automessage.framework.ui.programming
+package com.automessage.ui.programming
 
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -6,8 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
-import com.automessage.framework.ui.common.Constants
-import java.text.DateFormat
+import com.automessage.ui.common.Constants
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,7 +20,6 @@ class DateDialogFragment(val listener: (date: String) -> Unit) : DialogFragment(
             set(Calendar.DAY_OF_MONTH, dayOfMonth)
         }
 
-        //listener(DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.time))
         listener(SimpleDateFormat(Constants.DATE_FORMAT).format(calendar.time))
     }
 

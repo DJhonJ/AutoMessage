@@ -1,4 +1,4 @@
-package com.automessage.framework.data
+package com.automessage.framework
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -9,9 +9,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
 import com.automessage.R
-import com.automessage.framework.ui.main.MainActivity
 
 class NotificationApp(private val context: Context) {
     companion object {

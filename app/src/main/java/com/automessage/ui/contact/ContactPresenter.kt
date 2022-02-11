@@ -1,4 +1,4 @@
-package com.automessage.framework.ui.contact
+package com.automessage.ui.contact
 
 import com.automessage.domain.Contact
 import com.automessage.usecases.GetContacts

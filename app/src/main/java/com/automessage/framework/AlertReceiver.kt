@@ -1,14 +1,10 @@
-package com.automessage.framework.data
+package com.automessage.framework
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.widget.Toast
-import com.automessage.domain.InformationSend
-import com.automessage.framework.ui.common.Constants
-import com.automessage.framework.ui.main.MainActivity
-import org.koin.java.KoinJavaComponent.inject
+import com.automessage.domain.Information
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,7 +14,6 @@ class AlertReceiver : BroadcastReceiver() {
     //private val notificationApp: NotificationApp by inject()
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        //Toast.makeText(context, "INICIANDO PROCCESO DE ENVIO DE MENSAJE", Toast.LENGTH_SHORT).show()
         context?.let {
             val date = SimpleDateFormat("dd MMMM, yyyy HH:mm:ss").format(Date()).toString()
 
@@ -31,13 +26,13 @@ class AlertReceiver : BroadcastReceiver() {
                 return
             }
 
-            val intentWhatsapp = intent?.let {
-                val infoSend: InformationSend? = it.extras?.getSerializable("informationsend") as InformationSend?
+            val whatsappIntent = intent?.let {
+                val information: Information? = it.extras?.getSerializable("informationsend") as Information?
 
                 Intent().apply {
                     action = Intent.ACTION_VIEW
                     `package` = "com.whatsapp"
-                    data = Uri.parse("whatsapp://send?phone=${infoSend!!.numberSelected}&text=${infoSend!!.message}")
+                    data = Uri.parse("whatsapp://send?phone=${information!!.phone}&text=${information!!.message}")
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 }
             }
@@ -50,7 +45,7 @@ class AlertReceiver : BroadcastReceiver() {
 //                flags = Intent.FLAG_ACTIVITY_NEW_TASK
 //            }
 
-            context.startActivity(intentWhatsapp)
+            context.startActivity(whatsappIntent)
 
             NotificationApp(it).send("Iniciando proceso", "procesando... $date")
         }

@@ -1,13 +1,10 @@
-package com.automessage.framework.ui.contact
+package com.automessage.ui.contact
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.automessage.R
-import com.automessage.domain.Contact
-import com.automessage.framework.ui.programming.ProgrammingActivity
 import org.koin.android.ext.android.inject
 
 class ContactActivity : AppCompatActivity(), IContactView {
