@@ -1,5 +1,7 @@
 package com.automessage.ui.contact
 
+import com.automessage.domain.Contact
+
 interface IContactView {
-    fun onClickItem(number: String)
+    fun onClickItem(contact: Contact)
 }

@@ -30,9 +30,5 @@ class Util {
 
             return false
         }
-
-        fun DialogFragment.showAllowingStateLoss(fragmentManager: FragmentManager, tag: String) {
-
-        }
     }
 }

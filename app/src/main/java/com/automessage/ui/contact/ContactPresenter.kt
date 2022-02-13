@@ -5,12 +5,10 @@ import com.automessage.usecases.GetContacts
 import kotlinx.coroutines.*
 
 class ContactPresenter(private val getContactsUseCase: GetContacts) {
-    fun getContacts(): List<Contact> {
+    suspend fun getContacts(): List<Contact> {
         var users: List<Contact>? = null
 
-        runBlocking {
-            users = getContactsUseCase.invoke()
-        }
+        users = getContactsUseCase.invoke()
 
         return users ?: listOf()
     }

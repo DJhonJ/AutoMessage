@@ -1,13 +1,19 @@
 package com.automessage.ui.programming
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.provider.Settings
 import com.automessage.R
+import com.automessage.domain.Contact
 import com.automessage.domain.DateTime
+import com.automessage.domain.Message
 import com.automessage.ui.common.*
 import com.automessage.usecases.SaveMessage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.io.Serializable
 import java.text.SimpleDateFormat
 
 class ProgrammingPresenter(
@@ -15,7 +21,8 @@ class ProgrammingPresenter(
     private val viewActivity: IViewActivity,
     private val programDispatch: SaveMessage) {
 
-    fun onSave(date: String, time: String, phone: String?, message: String) {
+    @SuppressLint("SimpleDateFormat")
+    suspend fun onSave(date: String, time: String, contact: Contact?, message: String) {
         if (date.trim().isEmpty()) {
             viewActivity.showMessage(contextApp.getString(R.string.date_send_empty))
             return
@@ -26,8 +33,13 @@ class ProgrammingPresenter(
             return
         }
 
-        if (phone.isNullOrEmpty()) {
-            viewActivity.showMessage(contextApp.getString(R.string.phone_send_empty))
+        if (contact == null) {
+            viewActivity.showMessage(contextApp.getString(R.string.contact_send_empty))
+            return
+        }
+
+        if (contact.name.isNullOrEmpty() || contact.number.isNullOrEmpty()) {
+            viewActivity.showMessage(contextApp.getString(R.string.contact_send_empty))
             return
         }
 
@@ -36,19 +48,32 @@ class ProgrammingPresenter(
             return
         }
 
-        val dateTime =
-            SimpleDateFormat("${Constants.DATE_FORMAT} ${Constants.TIME_FORMAT}").parse("$date $time")
-        val response: Boolean = programDispatch.invoke(
-            dateTime.time,
-            DateTime(date, time),
-            phone, message
-        )
+        val dateTime = SimpleDateFormat("${Constants.DATE_FORMAT} ${Constants.TIME_FORMAT}").parse("$date $time")
 
-        if (response) {
-            viewActivity.showMessage("SUCCESS") //envia al inicio
-            //view.initActivity() inicializa una actividad
+        if (dateTime != null) {
+            val messageId = generateMessageId()
+            val messageDomain = Message(
+                messageId,
+                date,
+                time,
+                dateTime.time,
+                contact.name,
+                contact.number,
+                message,
+                0
+            )
+            val response: Boolean = programDispatch.invoke(messageDomain)
+
+            withContext(Dispatchers.Main) {
+                if (response) {
+                    viewActivity.showMessage("SUCCESS") //envia al inicio
+                    //view.initActivity() inicializa una actividad
+                } else {
+                    viewActivity.showMessage(contextApp.getString(R.string.message_validate_fields))
+                }
+            }
         } else {
-            viewActivity.showMessage("Diligenciar los campos de manera correcta.")
+            viewActivity.showMessage(contextApp.getString(R.string.message_validate_fields))
         }
     }
 
@@ -70,5 +95,19 @@ class ProgrammingPresenter(
         }
 
         return true
+    }
+
+    fun onAssignContact(serializable: Serializable?): Contact? {
+        if (serializable == null) {
+            viewActivity.showMessage(contextApp.getString(R.string.again_select_contact))
+            return null
+        }
+
+        viewActivity.showMessage("Contact selected")
+        return serializable as Contact
+    }
+
+    private fun generateMessageId(): String {
+        return ""
     }
 }

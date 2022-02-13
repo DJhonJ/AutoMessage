@@ -30,7 +30,7 @@ class ServiceAccessibility: AccessibilityService() {
 
             AccessibilityEvent.TYPE_VIEW_FOCUSED -> {
                 message("focus")
-                performClick()
+                //performClick()
                 //val activity: ActivityManager = this.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
             }
         }

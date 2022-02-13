@@ -9,7 +9,7 @@ import kotlinx.coroutines.*
 class PhoneContentProvider(private val context: Context): ILocalContacts {
      override suspend fun getContacts(): List<Contact> {
         val projection = arrayOf<String>(ContactsContract.Data.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER,
-            ContactsContract.CommonDataKinds.Photo.PHOTO)
+            /*ContactsContract.CommonDataKinds.Photo.PHOTO*/)
         val selectionClause = "${ContactsContract.CommonDataKinds.Phone.NUMBER} is not null and ${ContactsContract.Data.MIMETYPE} = ? and ${ContactsContract.RawContacts.ACCOUNT_TYPE} = ?"
         val selectionArgs = arrayOf<String>(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, "com.whatsapp")
         val sortOrders = "${ContactsContract.Data.DISPLAY_NAME} ASC"
@@ -31,7 +31,7 @@ class PhoneContentProvider(private val context: Context): ILocalContacts {
                          Contact(
                              this.getString(0) ?: "null",
                              this.getString(1) ?: "null",
-                             this.getString(2) ?: "null"
+                             //this.getString(2) ?: "null"
                          )
                      )
                  }

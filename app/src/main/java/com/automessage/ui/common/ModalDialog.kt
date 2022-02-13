@@ -1,22 +1,8 @@
 package com.automessage.ui.common
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
-import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.Lifecycle
-import com.automessage.ui.common.Util.Companion.showAllowingStateLoss
-import java.lang.Exception
-import java.lang.IllegalStateException
 
 class ModalDialog(
     private val context: Context,

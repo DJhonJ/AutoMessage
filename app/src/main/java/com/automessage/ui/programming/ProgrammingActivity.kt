@@ -6,20 +6,26 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import com.automessage.R
 import com.automessage.databinding.ActivityProgrammingBinding
+import com.automessage.domain.Contact
 import com.automessage.ui.common.Constants
 import com.automessage.ui.common.IViewActivity
 import com.automessage.ui.common.ModalDialog
 import com.automessage.ui.contact.ContactActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ProgrammingActivity: AppCompatActivity(), IViewActivity {
     private lateinit var binding: ActivityProgrammingBinding
     private val presenter: ProgrammingPresenter by inject { parametersOf(this) }
-    private var phone: String? = null
+    private var contactSelected: Contact? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,11 +53,13 @@ class ProgrammingActivity: AppCompatActivity(), IViewActivity {
 
         binding.btnSave.setOnClickListener {
             if (presenter.onVerifyAccessibility(this)) {
-                presenter.onSave(
-                    binding.etDate.text.toString(),
-                    binding.etTime.text.toString(),
-                    phone,
-                    binding.etMessage.text.toString())
+                lifecycleScope.launch(Dispatchers.Main) {
+                    presenter.onSave(
+                        binding.etDate.text.toString(),
+                        binding.etTime.text.toString(),
+                        contactSelected,
+                        binding.etMessage.text.toString())
+                }
             }
         }
 
@@ -71,8 +79,9 @@ class ProgrammingActivity: AppCompatActivity(), IViewActivity {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (Activity.RESULT_OK == resultCode) {
-            phone = data?.getStringExtra("number").toString()
-            showMessage("Contact selected")
+            contactSelected = presenter.onAssignContact(data?.getSerializableExtra("contact"))
+        } else {
+            showMessage(this.getString(R.string.again_select_contact))
         }
     }
 

@@ -12,19 +12,21 @@ class ContactsAdapter (private val contacts: List<Contact>, private val activity
 ): RecyclerView.Adapter<ContactsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item_contact, parent, false)
+            .inflate(R.layout.item_list_contact, parent, false)
 
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val contact = contacts[position]
+        if (this.getItemCount() > 0) {
+            val contact = contacts[position]
 
-        holder.itemView.setOnClickListener {
-            holder.click(activity, contact.number)
+            holder.itemView.setOnClickListener {
+                holder.click(activity, contact)
+            }
+
+            holder.bind(contact)
         }
-
-        holder.bind(contact)
     }
 
     override fun getItemCount(): Int = contacts.size
@@ -34,12 +36,12 @@ class ContactsAdapter (private val contacts: List<Contact>, private val activity
         //private val imgContact = view.findViewById<ImageView>(R.id.imgContact)
 
         fun bind(contact: Contact) {
-            view.findViewById<TextView>(R.id.tvName).setText("${contact.name}")
+            view.findViewById<TextView>(R.id.tvName).setText(contact.name)
             //imgContact.setImageURI()
         }
 
-        fun click(activity: IContactView, number: String) {
-            activity.onClickItem(number)
+        fun click(activity: IContactView, contact: Contact) {
+            activity.onClickItem(contact)
 
 //            view.context.startActivity(Intent(view.context, ProgrammingActivity::class.java).apply {
 //                putExtra("number", number)

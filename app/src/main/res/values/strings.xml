@@ -16,8 +16,10 @@
     <string name="hour_selected">Seleccionar hora</string>
     <string name="information">Información</string>
 
-    <string name="phone_send_empty">Debe por lo menos agregar un contacto</string>
+    <string name="contact_send_empty">Debe por lo menos agregar un contacto</string>
     <string name="message_send_empty">Escribir el mensaje a enviar</string>
     <string name="date_send_empty">Debe seleccionar la fecha de envío</string>
     <string name="time_send_empty">Debe seleccionar la hora de envío</string>
+    <string name="message_validate_fields">Diligenciar los campos de manera correcta</string>
+    <string name="again_select_contact">Vuelva a seleccionar el contacto</string>
 </resources>

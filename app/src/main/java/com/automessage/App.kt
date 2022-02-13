@@ -1,17 +1,21 @@
 package com.automessage
 
 import android.app.Application
-import com.automessage.framework.NotificationApp
+import androidx.room.Room
+import com.automessage.framework.database.AppDatabase
 import com.automessage.framework.initDependencyInjection
-import org.koin.android.ext.android.inject
 
 class App: Application()  {
-    private val notificationApp: NotificationApp by inject()
+    companion object {
+        lateinit var appDb: AppDatabase
+    }
+
+    //private val notificationApp: NotificationApp by inject()
 
     override fun onCreate() {
         super.onCreate()
+        appDb = Room.databaseBuilder(this, AppDatabase::class.java, "database-app").build()
         initDependencyInjection()
-
-        notificationApp.createChannel()
+        //notificationApp.createChannel()
     }
 }
