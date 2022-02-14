@@ -28,21 +28,21 @@ class MessagesAdapter(private  val messages: List<Message>): RecyclerView.Adapte
 
     inner class MessageViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
         fun bind(message: Message) {
-            view.findViewById<TextView>(R.id.tvPhoneContact)?.apply {
-                text = message.phones
-            }
+//            view.findViewById<TextView>(R.id.tvPhoneContact)?.apply {
+//                text = message.phones
+//            }
 
             view.findViewById<TextView>(R.id.tvDateContact)?.apply {
-                text = message.date
+                text = "${message.date} "
             }
 
             view.findViewById<TextView>(R.id.tvTimeContact)?.apply {
                 text = message.time
             }
 
-            view.findViewById<TextView>(R.id.tvNameContact)?.apply {
-                text = message.contacts
-            }
+//            view.findViewById<TextView>(R.id.tvNameContact)?.apply {
+//                text = message.contacts
+//            }
         }
     }
 }

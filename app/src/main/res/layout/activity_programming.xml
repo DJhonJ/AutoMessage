@@ -7,15 +7,13 @@
     android:orientation="vertical"
     android:padding="@dimen/dp_16"
     tools:context=".ui.programming.ProgrammingActivity">
-<!--    android:keepScreenOn="true">-->
-
 
     <Button
         android:id="@+id/btnAddContact"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_contact"
+        style="@style/ButtonTextWhatsAlarm"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,6 +85,7 @@
 
     <Button
         android:id="@+id/btnSave"
+        style="@style/ButtonTextWhatsAlarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"

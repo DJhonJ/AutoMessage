@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonNuevoEnvio.setOnClickListener {
+        binding.btnNewDispatch.setOnClickListener {
             val intent = Intent(this, ProgrammingActivity::class.java)
             startActivity(intent)
         }

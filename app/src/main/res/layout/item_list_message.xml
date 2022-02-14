@@ -1,50 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_margin="@dimen/dp_8"
-    android:orientation="vertical"
+    style="@style/CardWhatsAlarm"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/dp_16"
+        android:layout_height="90dp">
 
         <TextView
             android:id="@+id/tvDateContact"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp_8"
-            android:padding="@dimen/dp_8"
-            android:text="date"
-            android:textSize="@dimen/size_16sp" />
+            android:text="date "
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@id/tvTimeContact"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvTimeContact"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp_8"
-            android:padding="@dimen/dp_8"
             android:text="time"
-            android:textSize="@dimen/size_16sp" />
-    </LinearLayout>
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvDateContact"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvNameContact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp_8"
-        android:padding="@dimen/dp_8"
-        android:text="Name contact"
-        android:textSize="@dimen/size_16sp" />
 
-    <TextView
-        android:id="@+id/tvPhoneContact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp_8"
-        android:padding="@dimen/dp_8"
-        android:text="3005056194"
-        android:textSize="@dimen/size_16sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

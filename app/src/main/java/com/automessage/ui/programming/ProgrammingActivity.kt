@@ -80,8 +80,6 @@ class ProgrammingActivity: AppCompatActivity(), IViewActivity {
 
         if (Activity.RESULT_OK == resultCode) {
             contactSelected = presenter.onAssignContact(data?.getSerializableExtra("contact"))
-        } else {
-            showMessage(this.getString(R.string.again_select_contact))
         }
     }
 
