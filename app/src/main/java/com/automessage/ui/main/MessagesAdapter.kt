@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.automessage.R
 import com.automessage.domain.Message
 import com.automessage.ui.contact.ContactsAdapter
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 
 class MessagesAdapter(private  val messages: List<Message>): RecyclerView.Adapter<MessagesAdapter.MessageViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
@@ -38,6 +40,18 @@ class MessagesAdapter(private  val messages: List<Message>): RecyclerView.Adapte
 
             view.findViewById<TextView>(R.id.tvTimeContact)?.apply {
                 text = message.time
+            }
+
+            view.findViewById<ChipGroup>(R.id.cardChipGroup)?.apply {
+                val chip: Chip =  Chip(context).apply {
+                    text = message.contacts
+                    setChipIconResource(R.drawable.ic_baseline_account_circle_24)
+                    isCheckable = false
+                    isCloseIconVisible = false
+                }
+
+                this.removeAllViews()
+                this.addView(chip)
             }
 
 //            view.findViewById<TextView>(R.id.tvNameContact)?.apply {

@@ -10,6 +10,7 @@ import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.automessage.R
 
 class ServiceAccessibility: AccessibilityService() {
     lateinit var constraintLayout: FrameLayout
@@ -57,7 +58,7 @@ class ServiceAccessibility: AccessibilityService() {
     //Usa este método para completar cualquier paso de configuración único para tu servicio
     override fun onServiceConnected() {
         //super.onServiceConnected()
-        message("serviceConnected")
+        message(applicationContext.getString(R.string.accessibility_enabled_state))
         //message("serviceConnected con this")
 
         var info = AccessibilityServiceInfo()
@@ -76,7 +77,7 @@ class ServiceAccessibility: AccessibilityService() {
 
     //Se llama a este método cuando el sistema está a punto de cerrar el servicio de accesibilidad
     override fun onUnbind(intent: Intent?): Boolean {
-        message("servicio de accessibilidad cerrado.")
+        message(applicationContext.getString(R.string.accessibility_disabled_state))
         //return super.onUnbind(intent)
         return false
     }

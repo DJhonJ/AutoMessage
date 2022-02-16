@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_pending"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_pending_actions_24"
+        android:title="@string/pending" />
+
+    <item
+        android:id="@+id/page_sent"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_send_24"
+        android:title="@string/sent" />
+
+    <item
+        android:id="@+id/page_not_sent"
+        android:checked="true"
+        android:enabled="true"
+
+        android:icon="@drawable/ic_baseline_cancel_schedule_send_24"
+        android:title="@string/no_sent" />
+
+    <item
+        android:id="@+id/page_cancel"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_cancel_24"
+        android:title="@string/canceled" />
+</menu>

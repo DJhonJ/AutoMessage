@@ -1,30 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <style name="ButtonTextWhatsAlarm" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="iconTint">@color/white</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="iconTint">@color/color_primary</item>
+        <item name="android:textColor">@color/color_primary</item>
     </style>
 
     <style name="ToolbarWhatsAlarm" parent="Widget.MaterialComponents.Toolbar.Primary">
-        <item name="titleTextColor">@color/white</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:background">#202020</item>
+        <item name="titleTextColor">@color/color_primary</item>
+        <item name="android:textColor">@color/color_primary</item>
+        <item name="android:background">@color/color_window_background</item>
     </style>
 
     <style name="CardWhatsAlarm">
-        <item name="cardBackgroundColor">#282A2C</item>
+        <item name="cardBackgroundColor">@color/color_background_cardview</item>
         <item name="cardCornerRadius">25dp</item>
-        <item name="color">@color/white</item>
+        <item name="color">@color/color_primary</item>
         <item name="cardElevation">0dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginBottom">8dp</item>
     </style>
 
-    <style name="AlertDialogWhatsAlarm" parent="Theme.AppCompat.Dialog.Alert">
-        <item name="buttonStyle">@style/ButtonTextWhatsAlarm</item>
-        <item name="backgroundColor">#FF0000</item>
-        <item name="android:alertDialogStyle">@style/ButtonTextWhatsAlarm</item>
-        <item name="android:alertDialogTheme">@style/AlertDialogWhatsAlarm</item>
+    <style name="ButtonFloatingWhatsAlarm" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/color_accent</item>
+        <item name="android:padding">20dp</item>
     </style>
+
+    <style name="BottomNavigationWhatsAlarm.Colored" parent="Theme.AppCompat">
+        <item name="android:background">@color/color_bottom_navigation</item>
+    </style>
+
+    <style name="ChipWhatsAlarm.Entry" parent="Widget.MaterialComponents.Chip.Entry">
+        <item name="chipStrokeColor">@color/color_accent</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>

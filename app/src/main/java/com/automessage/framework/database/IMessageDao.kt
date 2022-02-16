@@ -7,7 +7,7 @@ import androidx.room.Update
 
 @Dao
 interface IMessageDao {
-    @Query("select * from Message where State = :state")
+    @Query("select * from Message where State = :state order by Id desc")
     fun getListMessage(state: Int): List<MessageEntity>
 
     @Query("select * from Message where id = :id")

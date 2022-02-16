@@ -7,4 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <!-- texts -->
+    <color name="color_primary">#F6F1F6</color>
+
+    <!-- background, color black -->
+    <color name="color_window_background">#202020</color>
+
+    <color name="color_accent">#9EBCF6</color>
+
+    <color name="color_background_cardview">#282A2C</color>
+
+    <color name="color_bottom_navigation">#222425</color>
 </resources>

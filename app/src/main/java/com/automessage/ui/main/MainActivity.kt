@@ -3,15 +3,17 @@ package com.automessage.ui.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.automessage.R
 import com.automessage.databinding.ActivityMainBinding
-import com.automessage.ui.common.ModalDialog
+import com.automessage.domain.Message
 import com.automessage.ui.programming.ProgrammingActivity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
-import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -26,20 +28,36 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ProgrammingActivity::class.java)
             startActivity(intent)
         }
+
+        binding.bottomNavView.setOnNavigationItemSelectedListener { item ->
+            val state: Int = when(item.itemId) {
+                R.id.page_sent -> 1
+                R.id.page_not_sent -> 2
+                R.id.page_cancel -> 3
+                else -> 0
+            }
+
+            loadMessages(state)
+
+            true
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        loadRecycler()
+        loadMessages(0)
     }
 
-    private fun loadRecycler() {
-        val state = 0
+    private fun loadMessages(state: Int) {
+        lifecycleScope.launch (Dispatchers.Main) {
+            val messages = presenter.getListMessage(state)
+            var fragment: Fragment? = MessagesFragment(MessagesAdapter(messages))
 
-        lifecycleScope.launch(Dispatchers.Main) {
-            val list = presenter.getListMessage(state)
-            val adapter = MessagesAdapter(list)
-            binding.recyclerMessage.adapter = adapter // = adapter
+            if (fragment != null) {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit()
+            }
         }
     }
 }
