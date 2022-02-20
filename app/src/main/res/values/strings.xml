@@ -12,12 +12,13 @@
     <string name="save">Guardar</string>
     <string name="new_dispatch">Nuevo envío</string>
     <string name="pending_dispatch">Envíos pendientes</string>
-    <string name="add_contact">Agregar contacto</string>
+    <string name="add_contact">Agregar contacto whatsapp</string>
     <string name="accessibility_enable">Habilitar accesibilidad</string>
     <string name="date_selected">Seleccionar fecha</string>
     <string name="hour_selected">Seleccionar hora</string>
     <string name="information">Información</string>
     <string name="title_main">Mensajes</string>
+    <string name="select_date_time">Seleccionar fecha y hora</string>
 
     <string name="contact_send_empty">Debe por lo menos agregar un contacto</string>
     <string name="message_send_empty">Escribir el mensaje a enviar</string>
@@ -31,4 +32,5 @@
     <string name="sent">Enviados</string>
     <string name="no_sent">No enviados</string>
     <string name="canceled">Cancelados</string>
+    <string name="comment_message">Write your comment..</string>
 </resources>

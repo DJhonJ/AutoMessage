@@ -10,35 +10,31 @@
 
     <Button
         android:id="@+id/btnAddContact"
-        android:layout_width="wrap_content"
+        style="@style/ButtonTextWhatsAlarm"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/add_contact"
-        style="@style/ButtonTextWhatsAlarm"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="wrap_content"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/dp_8"
-        android:text="@string/date_dispatch"
-        app:layout_constraintBottom_toTopOf="@id/etDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnAddContact" />
 
     <TextView
-        android:id="@+id/tvHour"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvSelectDateTime"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/hour_dispatch"
-        android:layout_marginTop="@dimen/dp_8"
-        app:layout_constraintBottom_toTopOf="@id/tvHour"
+        android:layout_marginTop="@dimen/dp_16"
+        android:text="@string/select_date_time"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvDate"
-        app:layout_constraintTop_toBottomOf="@id/btnAddContact" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chipGroup" />
 
     <EditText
         android:id="@+id/etDate"
@@ -47,9 +43,10 @@
         android:layout_weight="1"
         android:clickable="false"
         android:focusable="false"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toStartOf="@id/etTime"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDate" />
+        app:layout_constraintTop_toBottomOf="@id/tvSelectDateTime" />
 
     <EditText
         android:id="@+id/etTime"
@@ -58,15 +55,17 @@
         android:layout_weight="1"
         android:clickable="false"
         android:focusable="false"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/etDate"
-        app:layout_constraintTop_toBottomOf="@id/tvHour" />
+        app:layout_constraintTop_toBottomOf="@id/tvSelectDateTime" />
+
 
     <TextView
         android:id="@+id/tvMessage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_8"
         android:text="Mensaje"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etTime" />
@@ -76,20 +75,21 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="left|top"
-        android:hint="Write your comment.."
+        android:hint="@string/comment_message"
+        android:layout_marginTop="5dp"
         android:inputType="textMultiLine"
-        android:lines="23"
+        android:lines="15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMessage" />
 
     <Button
         android:id="@+id/btnSave"
-        style="@style/ButtonTextWhatsAlarm"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:text="@string/save"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -93,16 +93,17 @@ class WakeUpActivity : AppCompatActivity() {
         if (isScreenOn) {
             val message = intent.extras?.getSerializable("messageSend") as Message?
 
-            message?.let { msg ->
-                val _intent = Intent().apply {
-                    action = Intent.ACTION_VIEW
-                    `package` = Constants.ID_WHATSAPP
-                    data = Uri.parse("https://api.whatsapp.com/send?text=${msg.message}&phone=${msg.phones}")
-                    //flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                }
-
-                this.startActivity(_intent)
-            }
+                //envio de message
+//            message?.let { msg ->
+//                val _intent = Intent().apply {
+//                    action = Intent.ACTION_VIEW
+//                    `package` = Constants.ID_WHATSAPP
+//                    data = Uri.parse("https://api.whatsapp.com/send?text=${msg.message}&phone=${msg.phones}")
+//                    //flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//                }
+//
+//                this.startActivity(_intent)
+//            }
         }
     }
 }

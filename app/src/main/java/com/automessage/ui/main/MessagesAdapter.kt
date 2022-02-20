@@ -43,15 +43,20 @@ class MessagesAdapter(private  val messages: List<Message>): RecyclerView.Adapte
             }
 
             view.findViewById<ChipGroup>(R.id.cardChipGroup)?.apply {
-                val chip: Chip =  Chip(context).apply {
-                    text = message.contacts
-                    setChipIconResource(R.drawable.ic_baseline_account_circle_24)
-                    isCheckable = false
-                    isCloseIconVisible = false
-                }
-
                 this.removeAllViews()
-                this.addView(chip)
+
+                for (contact in message.contacts) {
+                    if (contact.number.isNotEmpty()) {
+                        val chip: Chip =  Chip(context).apply {
+                            text = "${contact.name}"
+                            setChipIconResource(R.drawable.ic_baseline_account_circle_24)
+                            isCheckable = false
+                            isCloseIconVisible = false
+                        }
+
+                        this.addView(chip)
+                    }
+                }
             }
 
 //            view.findViewById<TextView>(R.id.tvNameContact)?.apply {

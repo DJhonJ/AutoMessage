@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.automessage.R
@@ -14,6 +15,7 @@ import com.automessage.ui.common.Constants
 import com.automessage.ui.common.IViewActivity
 import com.automessage.ui.common.ModalDialog
 import com.automessage.ui.contact.ContactActivity
+import com.google.android.material.chip.Chip
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -25,13 +27,15 @@ import java.util.*
 class ProgrammingActivity: AppCompatActivity(), IViewActivity {
     private lateinit var binding: ActivityProgrammingBinding
     private val presenter: ProgrammingPresenter by inject { parametersOf(this) }
-    private var contactSelected: Contact? = null
+    private val contactsSelected: MutableList<Contact>? by lazy { mutableListOf() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityProgrammingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         binding.etDate.setText(SimpleDateFormat(Constants.DATE_FORMAT).format(Date()))
         binding.etTime.setText(SimpleDateFormat(Constants.TIME_FORMAT).format(Date()))
@@ -57,7 +61,7 @@ class ProgrammingActivity: AppCompatActivity(), IViewActivity {
                     presenter.onSave(
                         binding.etDate.text.toString(),
                         binding.etTime.text.toString(),
-                        contactSelected,
+                        contactsSelected,
                         binding.etMessage.text.toString())
                 }
             }
@@ -75,11 +79,26 @@ class ProgrammingActivity: AppCompatActivity(), IViewActivity {
         presenter.onVerifyAccessibility(this)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return false
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (Activity.RESULT_OK == resultCode) {
-            contactSelected = presenter.onAssignContact(data?.getSerializableExtra("contact"))
+            val newContact = presenter.onAssignContact(data?.getSerializableExtra("contact"))
+
+            if (newContact != null) {
+                contactsSelected?.add(newContact)
+
+                val chip = Chip(this).apply {
+                    text = newContact!!.name
+                }
+
+                binding.chipGroup.addView(chip)
+            }
         }
     }
 

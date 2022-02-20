@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ActionBarWhatsAlarm" parent="ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="backgroundColor">@color/color_window_background</item>
+
+        <item name="titleTextColor">@color/color_primary</item>
+        <item name="elevation">0dp</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:windowContentOverlay">@null</item>
+
+        <item name="android:background">@color/color_window_background</item>
+        <item name="colorControlNormal">@color/color_primary</item>
+    </style>
+</resources>

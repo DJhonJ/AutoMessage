@@ -19,11 +19,13 @@
         <item name="colorAccent">@color/color_accent</item>
         <item name="floatingActionButtonStyle">@style/ButtonFloatingWhatsAlarm</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/color_window_background</item>
-        <item name="toolbarStyle">@style/ToolbarWhatsAlarm</item>
+<!--        <item name="toolbarStyle">@style/ToolbarWhatsAlarm</item>-->
         <item name="android:windowBackground">@color/color_window_background</item>
         <item name="android:textColor">@color/color_primary</item>
         <item name="materialCardViewStyle">@style/CardWhatsAlarm</item>
         <item name="bottomNavigationStyle">@style/BottomNavigationWhatsAlarm.Colored</item>
         <item name="chipStyle">@style/ChipWhatsAlarm.Entry</item>
+        <item name="actionBarTheme">@style/ActionBarWhatsAlarm</item>
+
     </style>
 </resources>

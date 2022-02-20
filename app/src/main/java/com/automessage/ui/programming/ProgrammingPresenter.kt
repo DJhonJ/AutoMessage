@@ -22,7 +22,7 @@ class ProgrammingPresenter(
     private val programDispatch: SaveMessage) {
 
     @SuppressLint("SimpleDateFormat")
-    suspend fun onSave(date: String, time: String, contact: Contact?, message: String) {
+    suspend fun onSave(date: String, time: String, contacts: List<Contact>?, message: String) {
         if (date.trim().isEmpty()) {
             viewActivity.showMessage(contextApp.getString(R.string.date_send_empty))
             return
@@ -33,15 +33,16 @@ class ProgrammingPresenter(
             return
         }
 
-        if (contact == null) {
+        if (contacts == null || contacts.size < 0) {
             viewActivity.showMessage(contextApp.getString(R.string.contact_send_empty))
             return
         }
 
-        if (contact.name.isNullOrEmpty() || contact.number.isNullOrEmpty()) {
-            viewActivity.showMessage(contextApp.getString(R.string.contact_send_empty))
-            return
-        }
+        //metodo para validar si todos los contactos tienen datos
+//        if (contacts.name.isNullOrEmpty() || contacts.number.isNullOrEmpty()) {
+//            viewActivity.showMessage(contextApp.getString(R.string.contact_send_empty))
+//            return
+//        }
 
         if (message.trim().isEmpty()) {
             viewActivity.showMessage(contextApp.getString(R.string.message_send_empty))
@@ -52,16 +53,7 @@ class ProgrammingPresenter(
 
         if (dateTime != null) {
             val messageId = generateMessageId()
-            val messageDomain = Message(
-                messageId,
-                date,
-                time,
-                dateTime.time,
-                contact.name,
-                contact.number,
-                message,
-                0
-            )
+            val messageDomain = Message(messageId, date, time, dateTime.time, contacts, message, 0)
             val response: Boolean = programDispatch.invoke(messageDomain)
 
             withContext(Dispatchers.Main) {
