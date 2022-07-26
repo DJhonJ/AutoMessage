@@ -106,6 +106,11 @@ class ProgrammingActivity: AppCompatActivity(), IViewActivity {
         modalDialog.show()
     }
 
+    override fun onStartActivity(intent: Intent) {
+        startActivity(intent)
+        finish()
+    }
+
     override fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }

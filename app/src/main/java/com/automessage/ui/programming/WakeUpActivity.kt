@@ -10,12 +10,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PowerManager
 import android.speech.tts.TextToSpeech
+import android.text.Layout
 import android.view.WindowManager
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.lifecycleScope
 import com.automessage.R
+import com.automessage.databinding.ActivityProgrammingBinding
+import com.automessage.domain.Contact
 import com.automessage.domain.Message
 import com.automessage.ui.common.Constants
+import com.automessage.ui.main.MainActivity
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.core.context.unloadKoinModules
 
 class WakeUpActivity : AppCompatActivity() {
@@ -26,13 +35,26 @@ class WakeUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wake_up)
         //launchActivity()
-        wakeUpPowerManager()
+        //
+        lifecycleScope.launch {
+            wakeUpPowerManager()
+
+            delay(4000)
+
+            //unLock()
+
+            //delay(1000)
+
+            launchActivity()
+        }
+
         //unLock()
         //send()
     }
 
     override fun onResume() {
         super.onResume()
+
         //unLock()
 
 //        if(fullWakeLock.isHeld){
@@ -49,11 +71,38 @@ class WakeUpActivity : AppCompatActivity() {
         //partialWakeLock.acquire()
     }
 
-    private fun launchActivity() {
+    private suspend fun launchActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
-                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
+                WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON)
 
-        //send()
+        val message = intent.extras?.getSerializable("messageSend") as Message?
+        message?.let {
+            val l = findViewById<LinearLayout>(R.id.layout_wakeup)
+            val phones  = arrayListOf<String>()
+
+            for (contact: Contact in message.contacts) {
+                l.addView(TextView(this).apply {
+                    text = "${contact.name} ${contact.number}"
+                })
+
+                phones.add("phone=${contact.number}")
+            }
+
+            val _intent = Intent().apply {
+                action = Intent.ACTION_VIEW
+                `package` = Constants.ID_WHATSAPP
+                data = Uri.parse("https://api.whatsapp.com/send?text=${message.message}&${phones.joinToString("&")}")
+                //flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+
+            delay(1000)
+
+            //startActivity(Intent(this, MainActivity::class.java))
+
+            this.startActivity(_intent)
+            finish()
+        }
     }
 
     @SuppressLint("InvalidWakeLockTag")
@@ -63,7 +112,7 @@ class WakeUpActivity : AppCompatActivity() {
             fullWakeLock = it.newWakeLock((PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP),"full")
             //partialWakeLock = it.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"partial")
             fullWakeLock.acquire()
-            //fullWakeLock.release()
+
         }
 
         //unLock()
@@ -71,11 +120,13 @@ class WakeUpActivity : AppCompatActivity() {
 
     private fun unLock() {
         //fullWakeLock.acquire()
-        send()
-        //val km = this.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
 
-        //val kl = km.newKeyguardLock("name")
-        //kl.disableKeyguard()
+        val km = this.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+
+        val kl = km.newKeyguardLock("name")
+        kl.disableKeyguard()
+
+        fullWakeLock.release()
     }
 
     private fun send() {
@@ -92,6 +143,16 @@ class WakeUpActivity : AppCompatActivity() {
 
         if (isScreenOn) {
             val message = intent.extras?.getSerializable("messageSend") as Message?
+
+            message?.let {
+                val l = findViewById<LinearLayout>(R.id.layout_wakeup)
+
+                for (contact: Contact in message.contacts) {
+                    l.addView(TextView(this).apply {
+                        text = "${contact.name} ${contact.number}"
+                    })
+                }
+            }
 
                 //envio de message
 //            message?.let { msg ->

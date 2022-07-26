@@ -10,11 +10,13 @@ import com.automessage.domain.Contact
 import com.automessage.domain.DateTime
 import com.automessage.domain.Message
 import com.automessage.ui.common.*
+import com.automessage.ui.main.MainActivity
 import com.automessage.usecases.SaveMessage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.Serializable
 import java.text.SimpleDateFormat
+import kotlin.random.Random
 
 class ProgrammingPresenter(
     private val contextApp: Context,
@@ -33,7 +35,7 @@ class ProgrammingPresenter(
             return
         }
 
-        if (contacts == null || contacts.size < 0) {
+        if (contacts == null || contacts.isEmpty()) {
             viewActivity.showMessage(contextApp.getString(R.string.contact_send_empty))
             return
         }
@@ -59,7 +61,7 @@ class ProgrammingPresenter(
             withContext(Dispatchers.Main) {
                 if (response) {
                     viewActivity.showMessage("SUCCESS") //envia al inicio
-                    //view.initActivity() inicializa una actividad
+                    viewActivity.onStartActivity(Intent(contextApp, MainActivity::class.java))
                 } else {
                     viewActivity.showMessage(contextApp.getString(R.string.message_validate_fields))
                 }
@@ -95,11 +97,10 @@ class ProgrammingPresenter(
             return null
         }
 
-        viewActivity.showMessage("Contact selected")
         return serializable as Contact
     }
 
-    private fun generateMessageId(): String {
-        return ""
+    private fun generateMessageId(): Int {
+        return Random.nextInt(0, 9999) + Random.nextInt(10000, 20000)
     }
 }

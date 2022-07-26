@@ -19,7 +19,7 @@ import java.util.*
 class AlarmReceiver : BroadcastReceiver() {
     //private val notificationApp: NotificationApp by inject()
 
-    @SuppressLint("InvalidWakeLockTag")
+    //@SuppressLint("InvalidWakeLockTag")
     override fun onReceive(context: Context?, intent: Intent?) {
         context?.let { ctx ->
             //Toast.makeText(ctx, "ALARM", Toast.LENGTH_SHORT).show()

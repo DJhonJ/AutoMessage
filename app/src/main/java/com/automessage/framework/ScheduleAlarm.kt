@@ -28,8 +28,8 @@ class ScheduleAlarm(private val contextApp: Context) {
                 putExtra("messageSend", message)
             }
 
-            val alarmPendingIntent: PendingIntent = intent.let { _intent ->
-                PendingIntent.getBroadcast(contextApp, Random.nextInt(0, 100), _intent, PendingIntent.FLAG_IMMUTABLE)
+            val alarmPendingIntent: PendingIntent = intent.let {
+                PendingIntent.getBroadcast(contextApp, message.id_message, it, PendingIntent.FLAG_IMMUTABLE)
             }
 
             alarmMgr?.setExact(

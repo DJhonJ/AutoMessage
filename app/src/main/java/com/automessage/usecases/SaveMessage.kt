@@ -6,7 +6,7 @@ import com.automessage.domain.Message
 
 class SaveMessage (private val messageRepository: MessageRepository) {
     suspend fun invoke(message: Message): Boolean {
-        if ((message.contacts.size < 0 && message.contacts.isNullOrEmpty()) || message.message.isEmpty() || message.dateTimeMillisecond < 0) {
+        if (message.contacts.isNullOrEmpty() || message.message.isEmpty() || message.dateTimeMillisecond < 0) {
             return false
         }
 
