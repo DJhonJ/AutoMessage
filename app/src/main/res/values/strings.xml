@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WhatsAlarm</string>
+    <string name="app_name">What\'s Message</string>
 
     <string name="accessibility_name">WhatsAlarm Accessibility Service</string>
     <string name="accessibility_description">Necesarios para el envío de mensajes.</string>
