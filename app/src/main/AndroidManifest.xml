@@ -16,30 +16,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WhatsAlarmTwo">
+
         <activity android:name=".ui.programming.WakeUpActivity"></activity>
         <activity android:name=".ui.contact.ContactActivity" />
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.programming.ProgrammingActivity" />
 
-        <service
-            android:name=".framework.ServiceAccessibility"
-            android:description="@string/accessibility_description"
-            android:label="@string/accessibility_name"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
-            <intent-filter>
-                <action android:name="android.accessibilityservice.AccessibilityService" />
-            </intent-filter>
+<!--        <service-->
+<!--            android:name=".framework.ServiceAccessibility"-->
+<!--            android:description="@string/accessibility_description"-->
+<!--            android:label="@string/accessibility_name"-->
+<!--            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.accessibilityservice.AccessibilityService" />-->
+<!--            </intent-filter>-->
 
-            <meta-data
-                android:name="android.accessibilityservice"
-                android:resource="@xml/accessibility_service_config" />
-        </service>
+<!--            <meta-data-->
+<!--                android:name="android.accessibilityservice"-->
+<!--                android:resource="@xml/accessibility_service_config" />-->
+<!--        </service>-->
         <service android:name=".framework.MyService" />
 
         <receiver android:name=".framework.AlarmReceiver" />

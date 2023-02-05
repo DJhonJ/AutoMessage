@@ -1,4 +1,4 @@
-package com.djhonj.whatsmessage
+package com.whatsmessage
 
 import org.junit.Test
 

@@ -6,10 +6,9 @@ import kotlinx.coroutines.*
 
 class ContactPresenter(private val getContactsUseCase: GetContacts) {
     suspend fun getContacts(): List<Contact> {
-        var users: List<Contact>? = null
-
+        var users: List<Contact>?
         users = getContactsUseCase.invoke()
 
-        return users ?: listOf()
+        return users
     }
 }

@@ -17,10 +17,6 @@ import kotlin.random.Random
 class ScheduleAlarm(private val contextApp: Context) {
     @RequiresApi(Build.VERSION_CODES.KITKAT) //se ejecuta desde la version API KITKAT en adelante
     fun schedule(message: Message): Boolean {
-//        if (message.phones.isNullOrEmpty()) {
-//            return false
-//        }
-
         try {
             val alarmMgr: AlarmManager? = contextApp.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
@@ -34,7 +30,6 @@ class ScheduleAlarm(private val contextApp: Context) {
 
             alarmMgr?.setExact(
                 AlarmManager.RTC_WAKEUP,
-                //SystemClock.elapsedRealtime() + 60 * 1000,
                 message.dateTimeMillisecond,
                 alarmPendingIntent
             )

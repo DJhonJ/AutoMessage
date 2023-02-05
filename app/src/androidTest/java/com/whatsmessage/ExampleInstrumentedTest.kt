@@ -1,4 +1,4 @@
-package com.djhonj.whatsmessage
+package com.whatsmessage
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

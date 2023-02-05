@@ -17,7 +17,6 @@ class TimeDialogFragment(val listener: (String) -> Unit) : DialogFragment(), Tim
         calendar.set(Calendar.MINUTE, minute)
 
         listener(SimpleDateFormat(Constants.TIME_FORMAT).format(calendar.time))
-        //listener(DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.time))
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

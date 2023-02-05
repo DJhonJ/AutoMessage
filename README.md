@@ -1,7 +1,4 @@
-# whatsmessage
-
-Arquitectura de presentación (o maquetación): MVP
-Arquitectura de software: Clean
+# What's Message
 
 Herramientas usadas:
 - Koin: para inyectar las dependencias.

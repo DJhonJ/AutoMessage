@@ -1,4 +1,4 @@
-package com.whatsmessage.framework
+package com.whatsmessage
 
 import android.app.Application
 import androidx.room.Room
@@ -8,6 +8,7 @@ import com.whatsmessage.data.datasource.ILocalContacts
 import com.whatsmessage.data.datasource.ILocalMessage
 import com.whatsmessage.data.repository.ContactRepository
 import com.whatsmessage.data.repository.MessageRepository
+import com.whatsmessage.framework.PhoneContentProvider
 import com.whatsmessage.framework.database.AppDatabase
 import com.whatsmessage.framework.database.MessageDataSource
 import com.whatsmessage.ui.common.IViewActivity
@@ -34,7 +35,6 @@ fun Application.initDependencyInjection() {
 val appModule = module {
     //app
     single { (iva: IViewActivity) -> ProgrammingPresenter(get(), iva, get()) }
-    //single { NotificationApp(androidContext()) }
     factory { ContactPresenter(get()) }
     factory { MainPresenter(get()) }
 
@@ -44,7 +44,6 @@ val appModule = module {
 }
 
 val useCasesModule = module {
-    //single { SaveDispatch(androidContext(), androidContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager) }
     single { SaveMessage(get()) }
     single { GetContacts(get()) }
     single { GetMessages(get()) }

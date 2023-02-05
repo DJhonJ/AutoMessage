@@ -3,15 +3,12 @@ package com.whatsmessage.ui.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.whatsmessage.R
 import com.whatsmessage.databinding.ActivityMainBinding
-import com.whatsmessage.domain.Message
 import com.whatsmessage.ui.programming.ProgrammingActivity
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
@@ -25,8 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnNewDispatch.setOnClickListener {
-            val intent = Intent(this, ProgrammingActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, ProgrammingActivity::class.java))
         }
 
         binding.bottomNavView.setOnNavigationItemSelectedListener { item ->
@@ -36,9 +32,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.page_cancel -> 3
                 else -> 0
             }
-
             loadMessages(state)
-
             true
         }
     }

@@ -11,10 +11,9 @@ class SaveMessage (private val messageRepository: MessageRepository) {
         }
 
         message.apply {
-            contacts = message.contacts.map { c -> Contact(c.name, c.number.replace("+", "")) }
+            contacts = message.contacts.map { c -> Contact(c.name, c.number) }
         }
 
         return messageRepository.save(message)
-        //return true
     }
 }

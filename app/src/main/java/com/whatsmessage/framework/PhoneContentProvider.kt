@@ -8,11 +8,12 @@ import kotlinx.coroutines.*
 
 class PhoneContentProvider(private val context: Context): ILocalContacts {
      override suspend fun getContacts(): List<Contact> {
-        val projection = arrayOf<String>(ContactsContract.Data.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER,
-            /*ContactsContract.CommonDataKinds.Photo.PHOTO*/)
+         val displayName: String = ContactsContract.Data.DISPLAY_NAME
+
+        val projection = arrayOf(displayName, ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER)
         val selectionClause = "${ContactsContract.CommonDataKinds.Phone.NUMBER} is not null and ${ContactsContract.Data.MIMETYPE} = ? and ${ContactsContract.RawContacts.ACCOUNT_TYPE} = ?"
-        val selectionArgs = arrayOf<String>(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, "com.whatsapp")
-        val sortOrders = "${ContactsContract.Data.DISPLAY_NAME} ASC"
+        val selectionArgs = arrayOf(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, "com.whatsapp")
+        val sortOrders = "$displayName ASC"
 
          val cursor = context.contentResolver.query(
              ContactsContract.Data.CONTENT_URI,
@@ -29,8 +30,8 @@ class PhoneContentProvider(private val context: Context): ILocalContacts {
                  while (this.moveToNext()) {
                      contacts.add(
                          Contact(
-                             this.getString(0) ?: "null",
-                             this.getString(1) ?: "null",
+                             this.getString(0),
+                             this.getString(1).replace(Regex("""\D"""), "")
                              //this.getString(2) ?: "null"
                          )
                      )

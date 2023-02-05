@@ -14,15 +14,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/add_contact"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/dp_8"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnAddContact" />
 
@@ -40,10 +40,10 @@
         android:id="@+id/etDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:layout_weight="1"
         android:clickable="false"
         android:focusable="false"
-        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toStartOf="@id/etTime"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSelectDateTime" />
@@ -52,14 +52,13 @@
         android:id="@+id/etTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:layout_weight="1"
         android:clickable="false"
         android:focusable="false"
-        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/etDate"
         app:layout_constraintTop_toBottomOf="@id/tvSelectDateTime" />
-
 
     <TextView
         android:id="@+id/tvMessage"
@@ -74,9 +73,9 @@
         android:id="@+id/etMessage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:gravity="left|top"
         android:hint="@string/comment_message"
-        android:layout_marginTop="5dp"
         android:inputType="textMultiLine"
         android:lines="15"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,8 +88,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:text="@string/save"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

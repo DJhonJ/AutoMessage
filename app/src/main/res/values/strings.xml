@@ -26,11 +26,17 @@
     <string name="time_send_empty">Debe seleccionar la hora de envío</string>
     <string name="message_validate_fields">Diligenciar los campos de manera correcta</string>
     <string name="again_select_contact">Vuelva a seleccionar el contacto</string>
+    <string name="exists_select_contact">Contacto seleccionado ya se encuentra agregado</string>
     <string name="to_message">Para</string>
+    <string name="message_success_programmacion">Programación hecha correctamente</string>
+    <string name="message_fail_programmacion">No se programó el mensaje</string>
 
     <string name="pending">Pendientes</string>
     <string name="sent">Enviados</string>
     <string name="no_sent">No enviados</string>
     <string name="canceled">Cancelados</string>
-    <string name="comment_message">Write your comment..</string>
+    <string name="comment_message">Escribe tu mensaje..</string>
+
+    <string name="title_navbar_contact">Agregar contacto</string>
+    <string name="title_navbar_programming">Programar mensaje</string>
 </resources>

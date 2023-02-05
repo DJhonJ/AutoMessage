@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.whatsmessage.R
 import com.whatsmessage.domain.Message
-import com.whatsmessage.ui.contact.ContactsAdapter
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
@@ -30,9 +29,6 @@ class MessagesAdapter(private  val messages: List<Message>): RecyclerView.Adapte
 
     inner class MessageViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
         fun bind(message: Message) {
-//            view.findViewById<TextView>(R.id.tvPhoneContact)?.apply {
-//                text = message.phones
-//            }
 
             view.findViewById<TextView>(R.id.tvDateContact)?.apply {
                 text = "${message.date} "
@@ -58,10 +54,6 @@ class MessagesAdapter(private  val messages: List<Message>): RecyclerView.Adapte
                     }
                 }
             }
-
-//            view.findViewById<TextView>(R.id.tvNameContact)?.apply {
-//                text = message.contacts
-//            }
         }
     }
 }

@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Build
 import android.provider.Settings
+import androidx.annotation.RequiresApi
+import androidx.core.util.Predicate
 import com.whatsmessage.R
 import com.whatsmessage.domain.Contact
 import com.whatsmessage.domain.DateTime
@@ -23,8 +26,10 @@ class ProgrammingPresenter(
     private val viewActivity: IViewActivity,
     private val programDispatch: SaveMessage) {
 
+    private var contacts: MutableList<Contact> = mutableListOf()
+
     @SuppressLint("SimpleDateFormat")
-    suspend fun onSave(date: String, time: String, contacts: List<Contact>?, message: String) {
+    suspend fun save(date: String, time: String, message: String) {
         if (date.trim().isEmpty()) {
             viewActivity.showMessage(contextApp.getString(R.string.date_send_empty))
             return
@@ -35,16 +40,10 @@ class ProgrammingPresenter(
             return
         }
 
-        if (contacts == null || contacts.isEmpty()) {
+        if (contacts.size <= 0) {
             viewActivity.showMessage(contextApp.getString(R.string.contact_send_empty))
             return
         }
-
-        //metodo para validar si todos los contactos tienen datos
-//        if (contacts.name.isNullOrEmpty() || contacts.number.isNullOrEmpty()) {
-//            viewActivity.showMessage(contextApp.getString(R.string.contact_send_empty))
-//            return
-//        }
 
         if (message.trim().isEmpty()) {
             viewActivity.showMessage(contextApp.getString(R.string.message_send_empty))
@@ -53,47 +52,56 @@ class ProgrammingPresenter(
 
         val dateTime = SimpleDateFormat("${Constants.DATE_FORMAT} ${Constants.TIME_FORMAT}").parse("$date $time")
 
-        if (dateTime != null) {
-            val messageId = generateMessageId()
-            val messageDomain = Message(messageId, date, time, dateTime.time, contacts, message, 0)
-            val response: Boolean = programDispatch.invoke(messageDomain)
+        if (dateTime == null) {
+            viewActivity.showMessage(contextApp.getString(R.string.message_validate_fields))
+            return
+        }
 
-            withContext(Dispatchers.Main) {
-                if (response) {
-                    viewActivity.showMessage("SUCCESS") //envia al inicio
-                    viewActivity.onStartActivity(Intent(contextApp, MainActivity::class.java))
-                } else {
-                    viewActivity.showMessage(contextApp.getString(R.string.message_validate_fields))
-                }
-            }
+        val messageId = generateMessageId()
+        val messageDomain = Message(messageId, date, time, dateTime.time, contacts, message, 0)
+        val response: Boolean = programDispatch.invoke(messageDomain)
+
+        if (response) {
+            viewActivity.showMessage(contextApp.getString(R.string.message_success_programmacion)) //envia al inicio
+            viewActivity.onStartActivity(Intent(contextApp, MainActivity::class.java).apply {
+                Intent.FLAG_ACTIVITY_CLEAR_TASK
+                Intent.FLAG_ACTIVITY_CLEAR_TOP
+            })
         } else {
             viewActivity.showMessage(contextApp.getString(R.string.message_validate_fields))
         }
     }
 
-    fun onVerifyAccessibility(context: Context): Boolean {
-        if (!Util.isAccessibilityEnable(context)) {
-            val listener = { _: DialogInterface, _: Int ->
-                context.startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
-            }
+    fun addContact(serializable: Serializable?): Contact? {
+        val contact: Contact? = validateSerializable(serializable)
 
-            val modal = ModalDialog (
-                context,
-                context.getString(R.string.information),
-                context.getString(R.string.accessibility_enable_message),
-                context.getString(R.string.accessibility_enable),
-                listenerConfirm = listener)
-
-            viewActivity.onShowModalDialog(modal, "accessibility_enable")
-            return false
+        if (contact == null) {
+            viewActivity.showMessage(contextApp.getString(R.string.again_select_contact))
+            return null
         }
 
-        return true
+        if (existsContact(contact.number)) {
+            viewActivity.showMessage(contextApp.getString(R.string.exists_select_contact))
+            return null
+        }
+
+        contacts.add(contact)
+
+        return contact
     }
 
-    fun onAssignContact(serializable: Serializable?): Contact? {
+    fun removeContact(number: String){
+        contacts.filter { it.number == number.toString() }.forEach { contacts.remove(it) }
+    }
+
+    private fun existsContact(number: String) : Boolean {
+        //val predicate = Predicate { _number : String -> _number == number }
+        //contacts.any { predicate.test(it.number) }
+        return contacts.any { it.number == number }
+    }
+
+    private fun validateSerializable(serializable: Serializable?): Contact? {
         if (serializable == null) {
-            viewActivity.showMessage(contextApp.getString(R.string.again_select_contact))
             return null
         }
 

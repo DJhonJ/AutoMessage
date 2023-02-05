@@ -42,7 +42,7 @@ class NotificationApp(private val context: Context) {
         }
 
         return NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_whatsmessage)
+            .setSmallIcon(R.drawable.ic_automessage)
             .setContentTitle(title)
             .setContentText(description)
             .setPriority(priority)
