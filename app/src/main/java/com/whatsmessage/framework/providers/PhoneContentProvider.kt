@@ -1,4 +1,4 @@
-package com.whatsmessage.framework
+package com.whatsmessage.framework.providers
 
 import android.content.Context
 import android.provider.ContactsContract

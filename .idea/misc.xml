@@ -3,8 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.134" />
+        <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/drawable/ic_automessage.xml" value="0.134" />
+        <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.134" />
+        <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.134" />
+        <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/drawable/ic_baseline_cancel_24.xml" value="0.134" />
+        <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/drawable/ic_baseline_cancel_schedule_send_24.xml" value="0.134" />
+        <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/drawable/ic_baseline_pending_actions_24.xml" value="0.134" />
+        <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/drawable/ic_baseline_report_24.xml" value="0.134" />
+        <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.134" />
+        <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/drawable/ic_launcher_background.xml" value="0.134" />
         <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/layout/activity_contact.xml" value="0.22327898550724637" />
-        <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/layout/activity_main.xml" value="0.22327898550724637" />
+        <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/layout/activity_programming.xml" value="0.22327898550724637" />
         <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/layout/activity_wake_up.xml" value="0.22327898550724637" />
         <entry key="..\:/Jhon/Android/WhatsMessage/app/src/main/res/layout/item_list_contact.xml" value="0.22327898550724637" />

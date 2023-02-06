@@ -1,15 +1,11 @@
 package com.whatsmessage
 
 import android.app.Application
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.whatsmessage.App
 import com.whatsmessage.data.datasource.ILocalContacts
 import com.whatsmessage.data.datasource.ILocalMessage
 import com.whatsmessage.data.repository.ContactRepository
 import com.whatsmessage.data.repository.MessageRepository
-import com.whatsmessage.framework.PhoneContentProvider
-import com.whatsmessage.framework.database.AppDatabase
+import com.whatsmessage.framework.providers.PhoneContentProvider
 import com.whatsmessage.framework.database.MessageDataSource
 import com.whatsmessage.ui.common.IViewActivity
 import com.whatsmessage.ui.contact.ContactPresenter
