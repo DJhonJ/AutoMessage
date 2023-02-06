@@ -2,7 +2,6 @@ package com.whatsmessage.framework.providers
 
 import android.content.Context
 import android.provider.ContactsContract
-import com.whatsmessage.data.datasource.ILocalContacts
 import com.whatsmessage.domain.Contact
 import kotlinx.coroutines.*
 

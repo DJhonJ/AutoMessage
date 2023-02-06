@@ -1,8 +1,8 @@
 package com.whatsmessage
 
 import android.app.Application
-import com.whatsmessage.data.datasource.ILocalContacts
-import com.whatsmessage.data.datasource.ILocalMessage
+import com.whatsmessage.framework.providers.ILocalContacts
+import com.whatsmessage.framework.database.ILocalMessage
 import com.whatsmessage.data.repository.ContactRepository
 import com.whatsmessage.data.repository.MessageRepository
 import com.whatsmessage.framework.providers.PhoneContentProvider
@@ -36,7 +36,7 @@ val appModule = module {
 
     //framework
     factory<ILocalContacts> { PhoneContentProvider(androidContext()) }
-    factory<ILocalMessage> { MessageDataSource(get(), App.appDb.messageDao()) }
+    factory<ILocalMessage> { MessageDataSource(App.appDb.messageDao()) }
 }
 
 val useCasesModule = module {
