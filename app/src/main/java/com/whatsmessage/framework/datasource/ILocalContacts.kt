@@ -1,4 +1,4 @@
-package com.whatsmessage.framework.providers
+package com.whatsmessage.framework.datasource
 
 import com.whatsmessage.domain.Contact
 

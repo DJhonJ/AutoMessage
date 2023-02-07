@@ -45,15 +45,20 @@ dependencies {
     implementation 'net.servicestack:android:1.0.21' // for use join()
     //koin - dependency injection
     implementation "org.koin:koin-android:2.2.2"  // Koin for Android
-    //implementation "io.insert-koin:koin-core:3.0.1"  // Koin for Android
-    //implementation 'io.insert-koin:koin-androidx-compose:3.1.2'
-    //corrutinas
+    //coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1" //lifecycleScope
-    //cardview
+    //card view
     implementation "androidx.cardview:cardview:1.0.0"
-    //roomdatabase
+    //room database
     implementation "androidx.room:room-runtime:2.3.0"
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    //gson - use with retrofit for serialization of bodies HTTP
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    //HttpLogginInterceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:2.3.0" // To use Kotlin annotation processing tool (kapt)
     implementation "androidx.room:room-ktx:2.3.0" // optional - Kotlin Extensions and Coroutines support for Room

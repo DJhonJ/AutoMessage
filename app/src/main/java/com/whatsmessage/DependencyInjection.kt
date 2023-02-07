@@ -1,12 +1,14 @@
 package com.whatsmessage
 
 import android.app.Application
-import com.whatsmessage.framework.providers.ILocalContacts
-import com.whatsmessage.framework.database.ILocalMessage
+import com.whatsmessage.framework.datasource.ILocalContacts
+import com.whatsmessage.framework.datasource.ILocalMessage
+import com.whatsmessage.framework.datasource.ISchedulerService
 import com.whatsmessage.data.repository.ContactRepository
 import com.whatsmessage.data.repository.MessageRepository
 import com.whatsmessage.framework.providers.PhoneContentProvider
 import com.whatsmessage.framework.database.MessageDataSource
+import com.whatsmessage.framework.services.scheduler.SchedulerService
 import com.whatsmessage.ui.common.IViewActivity
 import com.whatsmessage.ui.contact.ContactPresenter
 import com.whatsmessage.ui.main.MainPresenter
@@ -21,7 +23,7 @@ import org.koin.dsl.module
 
 fun Application.initDependencyInjection() {
     startKoin {
-        //ayuda a ver posibles errores
+        //helps to see errors
         androidLogger()
         androidContext(this@initDependencyInjection)
         modules(listOf(dataModule, useCasesModule, appModule))
@@ -30,13 +32,13 @@ fun Application.initDependencyInjection() {
 
 val appModule = module {
     //app
-    single { (iva: IViewActivity) -> ProgrammingPresenter(get(), iva, get()) }
+    single { (viewActivity: IViewActivity) -> ProgrammingPresenter(get(), viewActivity, get()) }
     factory { ContactPresenter(get()) }
     factory { MainPresenter(get()) }
 
     //framework
     factory<ILocalContacts> { PhoneContentProvider(androidContext()) }
-    factory<ILocalMessage> { MessageDataSource(App.appDb.messageDao()) }
+    factory<ILocalMessage> { MessageDataSource(App.appDb.messageDao(), SchedulerService()) }
 }
 
 val useCasesModule = module {

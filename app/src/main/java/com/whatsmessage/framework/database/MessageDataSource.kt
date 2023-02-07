@@ -2,18 +2,21 @@ package com.whatsmessage.framework.database
 
 import android.util.Log
 import com.whatsmessage.domain.Message
+import com.whatsmessage.framework.datasource.ILocalMessage
+import com.whatsmessage.framework.datasource.ISchedulerService
 import com.whatsmessage.framework.toMessage
 import com.whatsmessage.framework.toMessageEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class MessageDataSource(private val messageDao: IMessageDao?): ILocalMessage {
+class MessageDataSource(private val messageDao: IMessageDao?, private val schedulerService: ISchedulerService): ILocalMessage {
     override suspend fun save(message: Message): Boolean {
         try {
             //i call service scheduler
             withContext(Dispatchers.IO) {
                 messageDao?.insertMessage(message.toMessageEntity())
+                schedulerService.schedule();
             }
         } catch (e: Exception) {
             Log.e("error-save", e.message.toString())

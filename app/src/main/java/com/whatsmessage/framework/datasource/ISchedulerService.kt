@@ -1,4 +1,4 @@
-package com.whatsmessage.framework.services
+package com.whatsmessage.framework.datasource
 
 interface ISchedulerService {
     suspend fun schedule()

@@ -3,6 +3,7 @@ package com.whatsmessage.framework.providers
 import android.content.Context
 import android.provider.ContactsContract
 import com.whatsmessage.domain.Contact
+import com.whatsmessage.framework.datasource.ILocalContacts
 import kotlinx.coroutines.*
 
 class PhoneContentProvider(private val context: Context): ILocalContacts {

@@ -1,4 +1,4 @@
-package com.whatsmessage.framework.database
+package com.whatsmessage.framework.datasource
 
 import com.whatsmessage.domain.Message
 

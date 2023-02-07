@@ -1,6 +1,6 @@
 package com.whatsmessage.data.repository
 
-import com.whatsmessage.framework.database.ILocalMessage
+import com.whatsmessage.framework.datasource.ILocalMessage
 import com.whatsmessage.domain.Message
 
 class MessageRepository (private val localMessage: ILocalMessage) {

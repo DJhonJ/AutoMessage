@@ -2,21 +2,13 @@ package com.whatsmessage.ui.programming
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
-import android.os.Build
-import android.provider.Settings
-import androidx.annotation.RequiresApi
-import androidx.core.util.Predicate
 import com.whatsmessage.R
 import com.whatsmessage.domain.Contact
-import com.whatsmessage.domain.DateTime
 import com.whatsmessage.domain.Message
 import com.whatsmessage.ui.common.*
 import com.whatsmessage.ui.main.MainActivity
 import com.whatsmessage.usecases.SaveMessage
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import kotlin.random.Random
