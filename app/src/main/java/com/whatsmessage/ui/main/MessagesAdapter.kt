@@ -18,7 +18,7 @@ class MessagesAdapter(private  val messages: List<Message>): RecyclerView.Adapte
         return MessageViewHolder(view)
     }
 
-    //pasamos vista al view holder
+    //we send view to view holder function
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         if (itemCount > 0) {
             holder.bind(messages[position])
@@ -31,7 +31,7 @@ class MessagesAdapter(private  val messages: List<Message>): RecyclerView.Adapte
         fun bind(message: Message) {
 
             view.findViewById<TextView>(R.id.tvDateContact)?.apply {
-                text = "${message.date} "
+                text = message.dateShowUser
             }
 
             view.findViewById<TextView>(R.id.tvTimeContact)?.apply {
@@ -42,9 +42,9 @@ class MessagesAdapter(private  val messages: List<Message>): RecyclerView.Adapte
                 this.removeAllViews()
 
                 for (contact in message.contacts) {
-                    if (contact.number.isNotEmpty()) {
+                    if (contact.phone.isNotEmpty()) {
                         val chip: Chip =  Chip(context).apply {
-                            text = "${contact.name}"
+                            text = contact.name
                             setChipIconResource(R.drawable.ic_baseline_account_circle_24)
                             isCheckable = false
                             isCloseIconVisible = false

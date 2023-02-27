@@ -31,7 +31,8 @@ class PhoneContentProvider(private val context: Context): ILocalContacts {
                      contacts.add(
                          Contact(
                              this.getString(0),
-                             this.getString(1).replace(Regex("""\D"""), "")
+                             this.getString(1).replace(Regex("""\D"""), ""),
+                             "contact"
                              //this.getString(2) ?: "null"
                          )
                      )

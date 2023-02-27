@@ -7,5 +7,14 @@ import java.io.Serializable
  * contacts: son los nombres de las personas
  * phones: son sus telefonos
  * **/
-data class Message(val id_message: Int, val date: String, val time: String, val dateTimeMillisecond: Long, var contacts: List<Contact>, val message: String,
-                   val state: Int): Serializable
+data class Message(
+    val id: Int?,
+    val phone: String,
+    val date: String,
+    val dateShowUser: String,
+    val time: String,
+    val currentDate: String,
+    val message: String,
+    var contacts: List<Contact>,
+
+    val state: Int): Serializable

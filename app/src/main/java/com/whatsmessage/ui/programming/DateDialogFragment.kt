@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 //listener se ejecuta desde el main
-class DateDialogFragment(val listener: (date: String) -> Unit) : DialogFragment(), DatePickerDialog.OnDateSetListener {
+class DateDialogFragment(val listener: (dateShowUser: String, dateSelected: String) -> Unit) : DialogFragment(), DatePickerDialog.OnDateSetListener {
     //se llama cuando el usuario seleccione una fecha
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         val calendar = Calendar.getInstance().apply {
@@ -20,7 +20,10 @@ class DateDialogFragment(val listener: (date: String) -> Unit) : DialogFragment(
             set(Calendar.DAY_OF_MONTH, dayOfMonth)
         }
 
-        listener(SimpleDateFormat(Constants.DATE_FORMAT).format(calendar.time))
+        val dateShowUser = SimpleDateFormat(Constants.DATE_FORMAT_USER, Locale("es")).format(calendar.time)
+        val dateSelected = SimpleDateFormat(Constants.DATE_FORMAT, Locale("es")).format(calendar.time)
+
+        listener(dateShowUser, dateSelected)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

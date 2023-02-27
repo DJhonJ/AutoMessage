@@ -13,17 +13,16 @@ import java.lang.Exception
 class MessageDataSource(private val messageDao: IMessageDao?, private val schedulerService: ISchedulerService): ILocalMessage {
     override suspend fun save(message: Message): Boolean {
         try {
-            //i call service scheduler
-            withContext(Dispatchers.IO) {
+            if (schedulerService.schedule(message)) {
                 messageDao?.insertMessage(message.toMessageEntity())
-                schedulerService.schedule();
+                return true
             }
+
+            return false
         } catch (e: Exception) {
-            Log.e("error-save", e.message.toString())
+            Log.e("ERROR-SAVE", e.message.toString())
             return  false
         }
-
-        return true
     }
 
     override suspend fun getListMessage(state: Int): List<Message> {

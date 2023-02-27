@@ -1,27 +1,33 @@
 package com.whatsmessage.ui.programming
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import android.util.Log
 import com.whatsmessage.R
 import com.whatsmessage.domain.Contact
 import com.whatsmessage.domain.Message
 import com.whatsmessage.ui.common.*
 import com.whatsmessage.ui.main.MainActivity
 import com.whatsmessage.usecases.SaveMessage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import java.io.Serializable
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.random.Random
 
 class ProgrammingPresenter(
     private val contextApp: Context,
     private val viewActivity: IViewActivity,
-    private val programDispatch: SaveMessage) {
+    private val saveMessageUseCase: SaveMessage) {
 
     private var contacts: MutableList<Contact> = mutableListOf()
 
-    @SuppressLint("SimpleDateFormat")
-    suspend fun save(date: String, time: String, message: String) {
+    suspend fun save(date: String, dateShowUser: String, time: String, messageText: String) {
         if (date.trim().isEmpty()) {
             viewActivity.showMessage(contextApp.getString(R.string.date_send_empty))
             return
@@ -32,29 +38,30 @@ class ProgrammingPresenter(
             return
         }
 
-        if (contacts.size <= 0) {
+        if (contacts.size == 0) {
             viewActivity.showMessage(contextApp.getString(R.string.contact_send_empty))
             return
         }
 
-        if (message.trim().isEmpty()) {
+        if (messageText.trim().isEmpty()) {
             viewActivity.showMessage(contextApp.getString(R.string.message_send_empty))
             return
         }
 
-        val dateTime = SimpleDateFormat("${Constants.DATE_FORMAT} ${Constants.TIME_FORMAT}").parse("$date $time")
+        val current: String = Util.getCurrentDate(Constants.DATE_TIME_FORMAT)
 
-        if (dateTime == null) {
+        if (current.isEmpty()) {
             viewActivity.showMessage(contextApp.getString(R.string.message_validate_fields))
             return
         }
 
-        val messageId = generateMessageId()
-        val messageDomain = Message(messageId, date, time, dateTime.time, contacts, message, 0)
-        val response: Boolean = programDispatch.invoke(messageDomain)
+        val phone = ""
+        val message = Message(0, phone, date, dateShowUser, time, current, messageText, contacts, 0)
+        val response = GlobalScope.async(Dispatchers.IO) { saveMessageUseCase.invoke(message) }
 
-        if (response) {
-            viewActivity.showMessage(contextApp.getString(R.string.message_success_programmacion)) //envia al inicio
+        if (response.await()) {
+            viewActivity.showMessage(contextApp.getString(R.string.message_success_programmacion))
+
             viewActivity.onStartActivity(Intent(contextApp, MainActivity::class.java).apply {
                 Intent.FLAG_ACTIVITY_CLEAR_TASK
                 Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -72,7 +79,7 @@ class ProgrammingPresenter(
             return null
         }
 
-        if (existsContact(contact.number)) {
+        if (existsContact(contact.phone)) {
             viewActivity.showMessage(contextApp.getString(R.string.exists_select_contact))
             return null
         }
@@ -83,13 +90,13 @@ class ProgrammingPresenter(
     }
 
     fun removeContact(number: String){
-        contacts.filter { it.number == number.toString() }.forEach { contacts.remove(it) }
+        contacts.filter { it.phone == number }.forEach { contacts.remove(it) }
     }
 
     private fun existsContact(number: String) : Boolean {
         //val predicate = Predicate { _number : String -> _number == number }
         //contacts.any { predicate.test(it.number) }
-        return contacts.any { it.number == number }
+        return contacts.any { it.phone == number }
     }
 
     private fun validateSerializable(serializable: Serializable?): Contact? {
@@ -98,9 +105,5 @@ class ProgrammingPresenter(
         }
 
         return serializable as Contact
-    }
-
-    private fun generateMessageId(): Int {
-        return Random.nextInt(0, 9999) + Random.nextInt(10000, 20000)
     }
 }
