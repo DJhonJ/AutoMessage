@@ -39,4 +39,14 @@
 
     <string name="title_navbar_contact">Agregar contacto</string>
     <string name="title_navbar_programming">Programar mensaje</string>
+
+    <!-- que es:text,description,name..etc _ para quien:contact,main..etc _ container: componente,broadcast,receiver,permissions...etc -->
+    <string name="text_contacts_permissions">
+        Para poder programar y enviar mensajes a personas, permite a la aplicación acceder a tus contactos. Toca Ajustes > Permisos, y activa Contactos.
+    </string>
+
+    <string name="text_cancel">Cancelar</string>
+    <string name="text_continue">Continuar</string>
+    <string name="text_allow">Permitir</string>
+    <string name="text_settings">Ajustes</string>
 </resources>

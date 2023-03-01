@@ -8,13 +8,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.whatsmessage.R
-import com.whatsmessage.ui.common.Constants
-import com.whatsmessage.ui.common.IViewActivity
-import com.whatsmessage.ui.common.ModalDialog
 import com.whatsmessage.ui.contact.ContactActivity
 import com.google.android.material.chip.Chip
+import com.google.android.material.snackbar.Snackbar
 import com.whatsmessage.databinding.ActivityProgrammingBinding
-import com.whatsmessage.ui.common.Util
+import com.whatsmessage.ui.common.*
+import com.whatsmessage.ui.component.ModalDialog
+import com.whatsmessage.ui.component.PermissionsRequest
 import com.whatsmessage.ui.main.MainActivity
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -22,10 +22,13 @@ import org.koin.core.parameter.parametersOf
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ProgrammingActivity: AppCompatActivity(), IViewActivity {
+class ProgrammingActivity : AppCompatActivity(), IActivityView {
     private lateinit var binding: ActivityProgrammingBinding
-    private val presenter: ProgrammingPresenter by inject { parametersOf(this) }
     private lateinit var dateSelectedServer: String
+    private lateinit var layout: View
+
+    private val presenter: ProgrammingPresenter by inject { parametersOf(this) }
+    private val permissionRequest: PermissionsRequest by inject { parametersOf(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +44,12 @@ class ProgrammingActivity: AppCompatActivity(), IViewActivity {
         binding.etTime.setText(SimpleDateFormat(Constants.TIME_FORMAT, Locale("es")).format(Date()))
 
         binding.etDate.setOnClickListener {
-            val picker = DateDialogFragment { dateUser, dateSelected -> onDateSelected(dateUser, dateSelected) }
+            val picker = DateDialogFragment { dateUser, dateSelected ->
+                onDateSelected(
+                    dateUser,
+                    dateSelected
+                )
+            }
             picker.show(supportFragmentManager, "select_date")
         }
 
@@ -56,13 +64,21 @@ class ProgrammingActivity: AppCompatActivity(), IViewActivity {
                     dateSelectedServer,
                     binding.etDate.text.toString(),
                     binding.etTime.text.toString(),
-                    binding.etMessage.text.toString())
+                    binding.etMessage.text.toString()
+                )
             }
         }
 
         binding.btnAddContact.setOnClickListener {
-            startActivityForResult(Intent(this, ContactActivity::class.java), 0)
+            if (permissionRequest.checkPermissionsShowDialog()) {
+                startActivityForResult(Intent(this, ContactActivity::class.java), 0)
+            }
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        permissionRequest.onRequestPermissionsResult(requestCode, grantResults)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -97,16 +113,20 @@ class ProgrammingActivity: AppCompatActivity(), IViewActivity {
         }
     }
 
-    override fun onShowModalDialog(modalDialogFragment: ModalDialog, tag: String) {
-        modalDialogFragment.show()
+    override fun onShowModalDialog(modalDialog: ModalDialog, tag: String) {
+        modalDialog.show()
     }
 
     override fun onStartActivity(intent: Intent) {
         startActivity(intent)
     }
 
-    override fun showMessage(message: String) {
+    override fun onShowMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun getInstance(): Activity {
+        return this
     }
 
     private fun onDateSelected(date: String, dateSelected: String) {

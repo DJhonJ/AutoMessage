@@ -3,13 +3,13 @@ package com.whatsmessage
 import android.app.Application
 import com.whatsmessage.framework.datasource.ILocalContacts
 import com.whatsmessage.framework.datasource.ILocalMessage
-import com.whatsmessage.framework.datasource.ISchedulerService
 import com.whatsmessage.data.repository.ContactRepository
 import com.whatsmessage.data.repository.MessageRepository
 import com.whatsmessage.framework.providers.PhoneContentProvider
 import com.whatsmessage.framework.database.MessageDataSource
 import com.whatsmessage.framework.services.scheduler.SchedulerService
-import com.whatsmessage.ui.common.IViewActivity
+import com.whatsmessage.ui.common.IActivityView
+import com.whatsmessage.ui.component.PermissionsRequest
 import com.whatsmessage.ui.contact.ContactPresenter
 import com.whatsmessage.ui.main.MainPresenter
 import com.whatsmessage.ui.programming.ProgrammingPresenter
@@ -32,9 +32,10 @@ fun Application.initDependencyInjection() {
 
 val appModule = module {
     //app
-    single { (viewActivity: IViewActivity) -> ProgrammingPresenter(get(), viewActivity, get()) }
+    single  { (iActivityView: IActivityView) -> ProgrammingPresenter(get(), iActivityView, get()) }
     factory { ContactPresenter(get()) }
     factory { MainPresenter(get()) }
+    factory { (iActivityView: IActivityView) -> PermissionsRequest(iActivityView) }
 
     //framework
     factory<ILocalContacts> { PhoneContentProvider(androidContext()) }

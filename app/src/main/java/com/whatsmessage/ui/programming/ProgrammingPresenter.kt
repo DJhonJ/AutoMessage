@@ -2,8 +2,6 @@ package com.whatsmessage.ui.programming
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
-import android.util.Log
 import com.whatsmessage.R
 import com.whatsmessage.domain.Contact
 import com.whatsmessage.domain.Message
@@ -14,44 +12,40 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import java.io.Serializable
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.random.Random
 
 class ProgrammingPresenter(
     private val contextApp: Context,
-    private val viewActivity: IViewActivity,
+    private val viewActivity: IActivityView,
     private val saveMessageUseCase: SaveMessage) {
 
     private var contacts: MutableList<Contact> = mutableListOf()
 
     suspend fun save(date: String, dateShowUser: String, time: String, messageText: String) {
         if (date.trim().isEmpty()) {
-            viewActivity.showMessage(contextApp.getString(R.string.date_send_empty))
+            viewActivity.onShowMessage(contextApp.getString(R.string.date_send_empty))
             return
         }
 
         if (time.trim().isEmpty()) {
-            viewActivity.showMessage(contextApp.getString(R.string.time_send_empty))
+            viewActivity.onShowMessage(contextApp.getString(R.string.time_send_empty))
             return
         }
 
         if (contacts.size == 0) {
-            viewActivity.showMessage(contextApp.getString(R.string.contact_send_empty))
+            viewActivity.onShowMessage(contextApp.getString(R.string.contact_send_empty))
             return
         }
 
         if (messageText.trim().isEmpty()) {
-            viewActivity.showMessage(contextApp.getString(R.string.message_send_empty))
+            viewActivity.onShowMessage(contextApp.getString(R.string.message_send_empty))
             return
         }
 
         val current: String = Util.getCurrentDate(Constants.DATE_TIME_FORMAT)
 
         if (current.isEmpty()) {
-            viewActivity.showMessage(contextApp.getString(R.string.message_validate_fields))
+            viewActivity.onShowMessage(contextApp.getString(R.string.message_validate_fields))
             return
         }
 
@@ -60,14 +54,14 @@ class ProgrammingPresenter(
         val response = GlobalScope.async(Dispatchers.IO) { saveMessageUseCase.invoke(message) }
 
         if (response.await()) {
-            viewActivity.showMessage(contextApp.getString(R.string.message_success_programmacion))
+            viewActivity.onShowMessage(contextApp.getString(R.string.message_success_programmacion))
 
             viewActivity.onStartActivity(Intent(contextApp, MainActivity::class.java).apply {
                 Intent.FLAG_ACTIVITY_CLEAR_TASK
                 Intent.FLAG_ACTIVITY_CLEAR_TOP
             })
         } else {
-            viewActivity.showMessage(contextApp.getString(R.string.message_validate_fields))
+            viewActivity.onShowMessage(contextApp.getString(R.string.message_validate_fields))
         }
     }
 
@@ -75,12 +69,12 @@ class ProgrammingPresenter(
         val contact: Contact? = validateSerializable(serializable)
 
         if (contact == null) {
-            viewActivity.showMessage(contextApp.getString(R.string.again_select_contact))
+            viewActivity.onShowMessage(contextApp.getString(R.string.again_select_contact))
             return null
         }
 
         if (existsContact(contact.phone)) {
-            viewActivity.showMessage(contextApp.getString(R.string.exists_select_contact))
+            viewActivity.onShowMessage(contextApp.getString(R.string.exists_select_contact))
             return null
         }
 

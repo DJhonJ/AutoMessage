@@ -1,15 +1,18 @@
-package com.whatsmessage.ui.common
+package com.whatsmessage.ui.component
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 
 class ModalDialog(
-    private val context: Context,
+    context: Activity,
     private val title: String = "",
     private val message: String = "",
     private val confirmText: String = "ok",
     private val cancelText: String? = null,
+    private val canceledOnTouch: Boolean = false,
+
     private val listenerConfirm: (dialog: DialogInterface, id: Int) -> Unit = { _, _ -> },
     private val listenerCancel: (dialog: DialogInterface, id: Int) -> Unit = { _, _ -> }
 ) {
@@ -30,5 +33,6 @@ class ModalDialog(
         }
 
         builder.create()
+            .setCanceledOnTouchOutside(true)
     }
 }

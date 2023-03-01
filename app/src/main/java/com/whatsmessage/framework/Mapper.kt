@@ -1,10 +1,8 @@
 package com.whatsmessage.framework
 
-import android.util.Log
 import com.whatsmessage.domain.Contact
 import com.whatsmessage.domain.Message
 import com.whatsmessage.framework.database.MessageEntity
-import kotlinx.coroutines.NonCancellable.join
 
 fun Message.toMessageEntity(): MessageEntity {
     this.contacts
